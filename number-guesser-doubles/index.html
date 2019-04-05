@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Number Guesser</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script defer src="main.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>NUMBER <span class="font-weight-small">GUESSER</span></h1>
+        <h5 class="header-line"> ULTIMATE CHALLANGER EDITION </h5>
+    </header>
+    <main class="flex-row">
+        <section class="left">
+            <!--Range form-->
+            <form class="flex-row left-section">
+                <div class="flex-column">
+                    <h2>Set Range</h2>
+                    <label for="min-range">Min Range</label>
+                    <input class="input" id="min-range" type="number"></input>
+                </div>
+                <div class="flex-column">
+                    <label for="max-range">Max Range</label>
+                    <input class="input" id="max-range" type="number"></input>
+                </div>
+                <div class="flex-column">
+                    <input class="button" id="update-button" type="button" value="UPDATE">
+                </div>
+            </form>
+            <!--Challanger form-->
+            <form class="flex-column left-section">
+                <h3 class="font-weight-small">&nbsp;&nbsp;The Current Range is <span class="span-underline" id="min-range-output">-</span> to <span class="span-underline" id="max-range-output">-</span></h3>
+                <!--Challenger 1-->
+                <div class="flex-row">
+                    <div class="flex-column">
+                        <h2>Challenger 1</h2>
+                        <label for="challenger-1">Name</label>
+                        <input class="input input-name" id="challenger-1" type="text"></input>
+                    </div>
+                    <div class="flex-column">
+                        <label for="guess-1">Guess</label>
+                        <input class="input" id="guess-1" type="number"></input>
+                    </div>
+                </div>
+                <!--Challenger 2-->
+                <div class="flex-row">
+                    <div class="flex-column">
+                        <h2>Challenger 2</h2>
+                        <label for="challenger-2">Name</label>
+                        <input class="input input-name" id="challenger-2" type="text    "></input>
+                    </div>
+                    <div class="flex-column">
+                        <label for="guess-2">Guess</label>
+                        <input class="input" id="guess-2" type="number"></input>
+                    </div>
+                </div>
+                <div class="flex-row flex-row-buttons">
+                    <input class="button" id="submit-button" type="button" value="SUBMIT GUESS">
+                    <input class="button" id="reset-button" type="button" value="RESET GAME">
+                    <input class="button" id="clear-button" type="button" value="CLEAR GAME">
+                </div>
+            </form>
+            <!--Latest Score-->
+            <div class="left-section">
+                <h2>Latest Score</h2>
+                <div class="flex-challenger">
+                    <div class="flex-column">
+                        <h3 id="challenger-1-output">Challenger 1 Name</h3>
+                        <h4 class="font-weight-small">current guess</h4>
+                        <span class="span-guess" id="guess-1-output">-</span>
+                        <h3 class="font-weight-small" id="high-low-1"></h3>
+                    </div>
+                    <div class="seperator"></div>
+                    <div class="flex-column">
+                        <h3 id="challenger-2-output">Challenger 2 Name</h3>
+                        <h4 class="font-weight-small">current guess</h4>
+                        <span class="span-guess" id="guess-2-output">-</span>
+                        <h3 class="font-weight-small" id="high-low-2"></h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="right">
+            <div class="winner-box">
+                <div class="flex-right">
+                    <h3 class="winner-box-small">CHALLANGER 1 NAME</h3>
+                    <h3 class="winner-box-small font-weight-small">vs</h3>
+                    <h3 class="winner-box-small">CHALLANGER 2 NAME</h3>
+                </div>
+                <hr class="hr-right">
+                <div class="flex-right-column">
+                    <h1>CHALLANGER NAME</h1>
+                    <h1 class="font-weight-small">WINNER</h1>
+                </div>
+                <hr class="hr-right">
+                <div class="flex-right">
+                    <h3 class="winner-box-small">- <span class="font-weight-small">GUESSES</span></h3>
+                    <h3 class="winner-box-small">- <span class="font-weight-small">MINUTES</span></h3>
+                    <button class="close"></button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
