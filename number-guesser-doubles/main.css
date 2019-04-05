@@ -64,13 +64,13 @@ body {
     background-color: #6e6e6e;
     font-weight: bold;
 }
-.button:hover {
+.button-hover:hover {
     background-color: #eb448a;
     border-color: #eb448a;
 }
 .button-disabled {
     background-color: #d0d2d3;
-    border-color: #d0d2d3;
+    border:0;
 }
 .input {
     height:30px;

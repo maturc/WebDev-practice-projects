@@ -71,4 +71,33 @@ clearButton.addEventListener("click", function () {
     challenger2.value = "";
     guess1.value = "";
     guess2.value = "";
+    clearButton.disabled = true;
+    clearButton.classList.add("button-disabled");
+    clearButton.classList.remove("button-hover");
+});
+var inputArray = [
+    challenger1,
+    challenger2,
+    guess1,
+    guess2
+];
+var arrayNum = 0;
+inputArray.forEach(function(elem) {
+    elem.addEventListener("input", function() {
+        inputArray.forEach(function(el) {
+        if (el.value == "") {
+            arrayNum++;
+        }});
+        if (arrayNum < 4) {
+            clearButton.disabled = false;
+            clearButton.classList.remove("button-disabled");
+            clearButton.classList.add("button-hover");
+            arrayNum = 0;
+        } else {
+            clearButton.disabled = true;
+            clearButton.classList.add("button-disabled");
+            clearButton.classList.remove("button-hover");
+            arrayNum = 0;
+        }
+    });
 });
