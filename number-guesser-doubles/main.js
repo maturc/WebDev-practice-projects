@@ -22,24 +22,12 @@ var submitButton = document.getElementById("submit-button");
 var resetButton = document.getElementById("reset-button");
 var clearButton = document.getElementById("clear-button");
 var closeButton = document.getElementsByClassName("close");
-//button click functions
-updateButton.addEventListener("click", function(){
-    minRangeOut.innerText = minRange.value;
-    maxRangeOut.innerText = maxRange.value;
-    randomNumFunc(minRange.value, maxRange.value);
-});
+//functions
+randomNumFunc (minRangeOut.innerText, maxRangeOut.innerText);
 function randomNumFunc(min, max) {
     randomNum = Math.floor(Math.random() * (Number(max) - Number(min) + 1) + Number(min));
     console.log(randomNum);
 }
-submitButton.addEventListener("click", function(){
-    challenger1Out.innerText = challenger1.value;
-    challenger2Out.innerText = challenger2.value;
-    guess1Out.innerText = guess1.value;
-    guess2Out.innerText = guess2.value;
-    highLow1.innerText = guessNumber(guess1);
-    highLow2.innerText = guessNumber(guess2);
-});
 function guessNumber(guess) {
     if (Number(guess.value) == randomNum) {
         return "BOOM!";
@@ -49,23 +37,24 @@ function guessNumber(guess) {
         return "that's too high";
     }
 }
-resetButton.addEventListener("click", function () {
-    randomNumFunc (minRangeOut.innerText, maxRangeOut.innerText);
+//update button
+updateButton.addEventListener("click", function(){
+    minRangeOut.innerText = minRange.value;
+    maxRangeOut.innerText = maxRange.value;
+    randomNumFunc(minRange.value, maxRange.value);
     minRange.value = "";
     maxRange.value = "";
-    minRangeOut.innerText = "-";
-    maxRangeOut.innerText = "-";
-    challenger1.value = "";
-    challenger2.value = "";
-    guess1.value = "";
-    guess2.value = "";
-    challenger1Out.innerText = "Challenger 1 Name";
-    challenger2Out.innerText = "Challenger 2 Name";
-    guess1Out.innerText = "-";
-    guess2Out.innerText = "-";
-    highLow1.innerText = "";
-    highLow2.innerText = "";
 });
+//submit button
+submitButton.addEventListener("click", function(){
+    challenger1Out.innerText = challenger1.value;
+    challenger2Out.innerText = challenger2.value;
+    guess1Out.innerText = guess1.value;
+    guess2Out.innerText = guess2.value;
+    highLow1.innerText = guessNumber(guess1);
+    highLow2.innerText = guessNumber(guess2);
+});
+//clear button
 clearButton.addEventListener("click", function () {
     challenger1.value = "";
     challenger2.value = "";
@@ -74,6 +63,11 @@ clearButton.addEventListener("click", function () {
     clearButton.disabled = true;
     clearButton.classList.add("button-disabled");
     clearButton.classList.remove("button-hover");
+    if (guess1Out.innerText == "-" || guess2Out.innerText == "-") {
+        resetButton.disabled = true;
+        resetButton.classList.add("button-disabled");
+        resetButton.classList.remove("button-hover");
+    }
 });
 var inputArray = [
     challenger1,
@@ -97,6 +91,59 @@ inputArray.forEach(function(elem) {
             clearButton.disabled = true;
             clearButton.classList.add("button-disabled");
             clearButton.classList.remove("button-hover");
+            arrayNum = 0;
+        }
+    });
+});
+//reset button
+resetButton.addEventListener("click", function () {
+    randomNumFunc (minRangeOut.innerText, maxRangeOut.innerText);
+    minRange.value = "";
+    maxRange.value = "";
+    minRangeOut.innerText = "-";
+    maxRangeOut.innerText = "-";
+    challenger1.value = "";
+    challenger2.value = "";
+    guess1.value = "";
+    guess2.value = "";
+    challenger1Out.innerText = "Challenger 1 Name";
+    challenger2Out.innerText = "Challenger 2 Name";
+    guess1Out.innerText = "-";
+    guess2Out.innerText = "-";
+    highLow1.innerText = "";
+    highLow2.innerText = "";
+});
+resetButton.addEventListener("click", function () {
+    challenger1.value = "";
+    challenger2.value = "";
+    guess1.value = "";
+    guess2.value = "";
+    clearButton.disabled = true;
+    clearButton.classList.add("button-disabled");
+    clearButton.classList.remove("button-hover");
+    resetButton.disabled = true;
+    resetButton.classList.add("button-disabled");
+    resetButton.classList.remove("button-hover");
+});
+var arrayNum = 0;
+inputArray.forEach(function(elem) {
+    elem.addEventListener("input", function() {
+        inputArray.forEach(function(el) {
+            if (el.value == "") {
+                arrayNum++;
+        }});
+        if (guess1Out.innerText == "-" || guess2Out.innerText == "-") {
+            arrayNum++;
+        }
+        if (arrayNum < 5) {
+            resetButton.disabled = false;
+            resetButton.classList.remove("button-disabled");
+            resetButton.classList.add("button-hover");
+            arrayNum = 0;
+        } else {
+            resetButton.disabled = true;
+            resetButton.classList.add("button-disabled");
+            resetButton.classList.remove("button-hover");
             arrayNum = 0;
         }
     });
