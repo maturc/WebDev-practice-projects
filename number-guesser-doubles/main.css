@@ -133,6 +133,7 @@ body {
 .winner-box {
     border: 2px solid #a5a6a5;
     background-color: white;
+    margin-bottom: 20px;
 }
 .winner-box-small {
     font-size: 16px;
