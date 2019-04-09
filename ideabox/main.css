@@ -7,58 +7,98 @@ small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 *, *:before, *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 /* Body */
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
 }
+/* Fonts */
+.menu-logo {
+  font-size: 16px;
+}
+.menu-label-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: #bfbfdd;
+}
+/* Sidebar menu */
 .menu {
-    background-color: #1f1f3d;
-    color: white;
+  background-color: #1f1f3d;
+  color: white;
 }
 .menu-section {
-    border-bottom: 1px solid #383863;
-    padding: 10px;
+  border-bottom: 1px solid #353567;
+  padding: 10px;
 }
-.label-text {
-    font-weight: 300;
-    font-size: 12px;
+.menu-sort li {
+  list-style: none;
+  padding: 0 5px;
 }
-.form-item {
-    display: block;
+.menu-sort li:hover {
+  background-color: #d14119;
+  margin-right: -10px;
+}
+.menu-sort li:hover::before {
+  content: 'a';
+  color: #f58e72;
+  background-color: #f58e72;
+  left: 0;
+  position: absolute;
+  border-right: 2px solid #f58e72;
+}
+.menu-sort li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+.form-element {
+  display: block;
 }
 .menu-button {
-    color: #e9e9f3;
-    background-color: #5356A4;
-    border: 1px solid #353567;
-    padding: 5px;
+  color: #e9e9f3;
+  background-color: #5356A4;
+  border-color: #353567; /*not good enough */
+  padding: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.menu-text-input {
+  padding: 5px;
+}
+.menu-button,
+.menu-sort,
+.menu-form {
+  margin-top: 10px;
 }
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-    body {
-      background-color: #F09A9D; /* Red */
-    }
+  body {
+    background-color: #F09A9D; /* Red */
   }
+  .menu-button,
+  .menu-text-input {
+    width: 100%;
+  }
+}
   
-  /* Tablet Styles */
-  @media only screen and (min-width: 401px) and (max-width: 960px) {
-    body {
-      background-color: #F5CF8E; /* Yellow */
-    }
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  body {
+    background-color: #F5CF8E; /* Yellow */
   }
+}
   
-  /* Desktop Styles */
-  @media only screen and (min-width: 961px) {
-    body {
-      background-color: #B2D6FF; /* Blue */
-    }
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  body {
+    background-color: #B2D6FF; /* Blue */
   }
+}
