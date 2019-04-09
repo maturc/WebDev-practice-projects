@@ -1,0 +1,64 @@
+/* Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+/* Body */
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+.menu {
+    background-color: #1f1f3d;
+    color: white;
+}
+.menu-section {
+    border-bottom: 1px solid #383863;
+    padding: 10px;
+}
+.label-text {
+    font-weight: 300;
+    font-size: 12px;
+}
+.form-item {
+    display: block;
+}
+.menu-button {
+    color: #e9e9f3;
+    background-color: #5356A4;
+    border: 1px solid #353567;
+    padding: 5px;
+}
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    body {
+      background-color: #F09A9D; /* Red */
+    }
+  }
+  
+  /* Tablet Styles */
+  @media only screen and (min-width: 401px) and (max-width: 960px) {
+    body {
+      background-color: #F5CF8E; /* Yellow */
+    }
+  }
+  
+  /* Desktop Styles */
+  @media only screen and (min-width: 961px) {
+    body {
+      background-color: #B2D6FF; /* Blue */
+    }
+  }
