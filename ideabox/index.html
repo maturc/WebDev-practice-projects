@@ -24,22 +24,24 @@
         <li><a href="#">Genius</a></li>
       </ul>
       <form class="menu-form">
-        <label class="form-element menu-label-text" for="">New Quality</label>
-        <input class="form-element menu-text-input" type="text">
+        <label class="form-element menu-label-text" for="quality-input">New Quality</label>
+        <input class="form-element menu-text-input" id="quality-input" type="text">
         <input class="form-element menu-button" type="button" value="Add New Quality">
       </form>
     </section>
   </aside>
   <main>
-    <section>
-      <form>
-        <label for="">Title</label>
-        <input type="text">
-        <label for="">Body</label>
-        <input type="text">
-        <input type="button" value="Save">
-        <input type="button" value="">
-        <input type="text">
+    <section class="idea-wrapper">
+      <form class="idea">
+        <label class="form-element idea-label-text" for="title-input">Title</label>
+        <input class="form-element idea-text-input" id="title-input" type="text">
+        <label class="form-element idea-label-text" for="body-input">Body</label>
+        <textarea class="form-element idea-text-input" rows="6"></textarea>
+        <input class="form-element idea-button" type="button" value="Save">
+        <div class="search">
+          <input class="search-button" type="button" value="">
+          <input class="search-input" type="text" placeholder="Search Ideas">
+        </div>
       </form>
     </section>
     <section>

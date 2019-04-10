@@ -29,6 +29,11 @@ body {
   font-weight: bold;
   color: #bfbfdd;
 }
+.idea-label-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: #1f1f3d;
+}
 /* Sidebar menu */
 .menu {
   background-color: #1f1f3d;
@@ -78,13 +83,68 @@ body {
 .menu-form {
   margin-top: 10px;
 }
+/* Idea Input */
+.idea-wrapper {
+  background-color: #a9aad2;
+}
+.idea {
+  padding: 10px;
+}
+.idea-button {
+  color: #e9e9f3;
+  background-color: #1f1f3d;
+  padding: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.idea-button,
+.idea-label-text,
+.search {
+  margin-top: 10px;
+}
+textarea {
+  resize: none;
+}
+.search {
+  display: flex;
+  justify-content: center;
+}
+.search-button {
+  background-image: url(./icons/search.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #1f1f3d;
+  padding-right: 16px;
+}
+.search-input {
+  width: 100%;
+}
+.search-input::placeholder {
+  color: #1f1f3d;
+  font-size: 12px;
+}
+.search-input,
+.idea-text-input {
+  padding: 5px;
+}
+.idea-text-input,
+.idea-button,
+.search {
+  border: 1px solid #7171c3;
+}
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
   body {
     background-color: #F09A9D; /* Red */
   }
   .menu-button,
-  .menu-text-input {
+  .menu-text-input,
+  .idea-wrapper,
+  .idea,
+  .idea-text-input,
+  .idea-button,
+  .search {
     width: 100%;
   }
 }
