@@ -1,8 +1,10 @@
 class Idea {
-    constructor (title, body, starred) {
+    constructor (title, body) {
         this.title = title;
         this.body = body;
-        this.starred = starred;
+        this.starred = false;
+        this.qualityList = ['Swill', 'Plausible', 'Genius'];
+        this.quality = this.qualityList[0];
     }
     saveToStorage() {
         localStorage.setItem();

@@ -97,6 +97,9 @@ body {
   cursor: pointer;
   font-weight: bold;
 }
+.idea-button:disabled {
+  background-color: #e0e0c2;
+}
 .idea-button,
 .idea-label-text,
 .search {
@@ -132,6 +135,69 @@ textarea {
 .idea-button,
 .search {
   border: 1px solid #7171c3;
+}
+/* Idea cards */
+.card-section {
+  background-color: #eaeaf4;
+  padding: 10px;
+}
+.card {
+  border: 1px solid #1f1f3d;
+}
+.card-header {
+  background-color: #1f1f3d;
+}
+.quality {
+  background-color: #5356a4;
+}
+.favorite           {background-image: url(./icons/star.svg);}
+.favorite-starred   {background-image: url(./icons/star-active.svg);}
+.delete             {background-image: url(./icons/delete.svg);}
+.delete:hover       {background-image: url(./icons/delete-active.svg);}
+.quality-up         {background-image: url(./icons/upvote.svg);}
+.quality-down       {background-image: url(./icons/downvote.svg);}
+.quality-up:hover   {background-image: url(./icons/upvote-active.svg);}
+.quality-down:hover {background-image: url(./icons/downvote-active.svg);}
+
+.favorite,
+.favorite-starred,
+.delete,
+.delete:hover,
+.quality-up,
+.quality-down,
+.quality-up:hover,
+.quality-down:hover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+.card-main {
+  background-color: white;
+  text-align: left;
+  color: #1f1f3d;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+}
+.card-body {
+  font-size: 14px;
+  padding: 10px;
+  padding-top: 0;
+}
+.quality-label {
+  color: white;
+  font-size: 12px;
+}
+.card-header,
+.quality {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {

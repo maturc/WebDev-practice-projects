@@ -5,6 +5,7 @@
   <title>IdeaBox</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+  <script defer src="idea.js"></script>
   <script defer src="main.js"></script>
 </head>
 <body>
@@ -36,15 +37,15 @@
         <label class="form-element idea-label-text" for="title-input">Title</label>
         <input class="form-element idea-text-input" id="title-input" type="text">
         <label class="form-element idea-label-text" for="body-input">Body</label>
-        <textarea class="form-element idea-text-input" rows="6"></textarea>
-        <input class="form-element idea-button" type="button" value="Save">
+        <textarea class="form-element idea-text-input" id="body-input" rows="6"></textarea>
+        <input class="form-element idea-button" id="save-button" type="button" value="Save" disabled>
         <div class="search">
           <input class="search-button" type="button" value="">
           <input class="search-input" type="text" placeholder="Search Ideas">
         </div>
       </form>
     </section>
-    <section>
+    <section class="card-section" id="idea-card-section">
       <!-- js ideas -->
     </section>
   </main>
