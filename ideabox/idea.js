@@ -1,19 +1,19 @@
+"use strict";
 class Idea {
     constructor (title, body) {
         this.title = title;
         this.body = body;
         this.starred = false;
-        this.qualityList = ['Swill', 'Plausible', 'Genius'];
-        this.quality = this.qualityList[0];
+        this.quality = "Swill";
     }
     saveToStorage() {
-        localStorage.setItem();
+        localStorage.setItem(this.title, JSON.stringify(this));
     }
     deleteFromStorage() {
-        localStorage.removeItem();
+        localStorage.removeItem(this.title, JSON.stringify(this));
     }
     updateIdea() {
-        localStorage.setItem();
+        localStorage.setItem(this.title, JSON.stringify(this));
     }
     updateQuality() {
         localStorage.setItem();

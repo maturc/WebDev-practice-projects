@@ -143,6 +143,7 @@ textarea {
 }
 .card {
   border: 1px solid #1f1f3d;
+  margin-bottom: 10px;
 }
 .card-header {
   background-color: #1f1f3d;
