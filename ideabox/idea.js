@@ -1,8 +1,8 @@
 "use strict";
 class Idea {
     constructor (title, body) {
-        this.title = title;
-        this.body = body;
+        this.title = String(title);
+        this.body = String(body);
         this.starred = false;
         this.quality = "Swill";
     }

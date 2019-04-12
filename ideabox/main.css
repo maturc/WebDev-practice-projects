@@ -140,6 +140,7 @@ textarea {
 .card-section {
   background-color: #eaeaf4;
   padding: 10px;
+  padding-bottom: 1px;
 }
 .card {
   border: 1px solid #1f1f3d;

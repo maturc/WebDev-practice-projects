@@ -13,10 +13,14 @@ for (let i = 0; i < localStorage.length; i++) {
 }
 function displayIdeas(key) {
     let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(key)));
+    let fav = "";
+    if (ideaInstance.starred) {
+        fav = " favorite-starred";
+    }
     ideaCardSection.innerHTML += (`
         <div class="card">
             <header class="card-header">
-                <div class="favorite"></div>
+                <div class="favorite${fav}"></div>
                 <div class="delete"></div>
             </header>
             <main class="card-main">
@@ -52,7 +56,7 @@ function deleteIdea() {
         /* Upvote button event */
         ideaCardSection.children[i].getElementsByClassName("quality-up")[0].addEventListener("click", function(e){
             let title = e.target.parentElement.parentElement.getElementsByClassName("card-title")[0].innerText;
-            let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(title)));
+            let ideaInstance = JSON.parse(localStorage.getItem(title));
             switch (ideaInstance.quality) {
                 case "Swill":
                     ideaInstance.quality = "Plausible";
@@ -63,12 +67,13 @@ function deleteIdea() {
                 default:
                     break;
             }
+            e.target.closest(".card").getElementsByClassName("quality-label")[0].innerText = `Quality: ${ideaInstance.quality}`;
             localStorage.setItem(title, JSON.stringify(ideaInstance));
         });
         /* Downvote button event */
         ideaCardSection.children[i].getElementsByClassName("quality-down")[0].addEventListener("click", function(e){
             let title = e.target.parentElement.parentElement.getElementsByClassName("card-title")[0].innerText;
-            let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(title)));
+            let ideaInstance = JSON.parse(localStorage.getItem(title));
             switch (ideaInstance.quality) {
                 case "Plausible":
                     ideaInstance.quality = "Swill";
@@ -79,7 +84,20 @@ function deleteIdea() {
                 default:
                     break;
             }
+            e.target.closest(".card").getElementsByClassName("quality-label")[0].innerText = `Quality: ${ideaInstance.quality}`;
             localStorage.setItem(title, JSON.stringify(ideaInstance));
+        });
+        ideaCardSection.children[i].getElementsByClassName("favorite")[0].addEventListener("click", function(e){
+            let title = e.target.parentElement.parentElement.getElementsByClassName("card-title")[0].innerText;
+            let ideaInstance = JSON.parse(localStorage.getItem(title));
+            if (ideaInstance.starred) {
+                e.target.classList.remove("favorite-starred");
+            } else {
+                e.target.classList.add("favorite-starred");
+            }
+            ideaInstance.starred = !ideaInstance.starred;
+            localStorage.setItem(title, JSON.stringify(ideaInstance));
+            
         });
     }
 }
