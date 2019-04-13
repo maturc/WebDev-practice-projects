@@ -8,32 +8,39 @@ titleInput.addEventListener("input", enableSaveButton);
 bodyInput.addEventListener("input", enableSaveButton);
 saveButton.addEventListener("click", saveIdea);
 
-for (let i = 0; i < localStorage.length; i++) {
-    displayIdeas(i);
-}
-function displayIdeas(key) {
-    let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(key)));
-    let fav = "";
-    if (ideaInstance.starred) {
-        fav = " favorite-starred";
+displayIdeas();
+function displayIdeas() {
+    for (let i = 0; i < localStorage.length; i++) {
+        let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        let fav = "";
+        if (ideaInstance.starred) {
+            fav = " favorite-starred";
+        }
+        ideaCardSection.innerHTML += (`
+            <div class="card">
+                <header class="card-header">
+                    <div class="favorite${fav}"></div>
+                    <div class="delete"></div>
+                </header>
+                <main class="card-main">
+                    <h2 class="card-title">${ideaInstance.title}</h2>
+                    <p class="card-body">${ideaInstance.body}</p>
+                </main>
+                <footer class="quality">
+                    <div class="quality-up"></div>
+                    <span class="quality-label">Quality: ${ideaInstance.quality}</span>
+                    <div class="quality-down"></div>
+                </footer>
+            </div>
+        `);
     }
-    ideaCardSection.innerHTML += (`
-        <div class="card">
-            <header class="card-header">
-                <div class="favorite${fav}"></div>
-                <div class="delete"></div>
-            </header>
-            <main class="card-main">
-                <h2 class="card-title">${ideaInstance.title}</h2>
-                <p class="card-body">${ideaInstance.body}</p>
-            </main>
-            <footer class="quality">
-                <div class="quality-up"></div>
-                <span class="quality-label">Quality: ${ideaInstance.quality}</span>
-                <div class="quality-down"></div>
-            </footer>
-        </div>
-    `);
+}
+function deleteAllIdeas() {
+    let cardCollection = document.getElementsByClassName("card");
+    let len = cardCollection.length;
+    for (let i = 0; i < len; i++) {
+        cardCollection[0].remove();
+    }
 }
 function enableSaveButton() {
     if (titleInput.value == "" || bodyInput.value == "") {
@@ -45,6 +52,8 @@ function enableSaveButton() {
 function saveIdea() {
     let ideaInstance = new Idea(titleInput.value, bodyInput.value); //make this a function perhaps
     ideaInstance.saveToStorage();
+    deleteAllIdeas();
+    displayIdeas();
 }
 function deleteIdea() {
     for (let i = 0; i < ideaCardSection.childElementCount; i++) {
