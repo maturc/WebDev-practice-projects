@@ -3,12 +3,16 @@ var titleInput = document.getElementById("title-input");
 var bodyInput = document.getElementById("body-input");
 var saveButton = document.getElementById("save-button");
 var ideaCardSection = document.getElementById("idea-card-section");
+var menuOpenButton = document.getElementById("menu-open");
+var menuCloseButton = document.getElementById("menu-close");
+var menu = document.getElementById("menu-id");
 
 titleInput.addEventListener("input", enableSaveButton);
 bodyInput.addEventListener("input", enableSaveButton);
 saveButton.addEventListener("click", saveIdea);
+menuOpenButton.addEventListener("click", openMenu);
+menuCloseButton.addEventListener("click", closeMenu);
 
-displayIdeas();
 function displayIdeas() {
     for (let i = 0; i < localStorage.length; i++) {
         let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(i)));
@@ -106,8 +110,14 @@ function deleteIdea() {
             }
             ideaInstance.starred = !ideaInstance.starred;
             localStorage.setItem(title, JSON.stringify(ideaInstance));
-            
         });
     }
 }
+function openMenu() {
+    menu.style.display = "block";
+}
+function closeMenu() {
+    menu.style.display = "none";
+}
+displayIdeas();
 deleteIdea();

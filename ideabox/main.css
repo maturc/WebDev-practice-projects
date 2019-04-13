@@ -38,6 +38,7 @@ body {
 .menu {
   background-color: #1f1f3d;
   color: white;
+  display: block;
 }
 .menu-section {
   border-bottom: 1px solid #353567;
@@ -82,6 +83,10 @@ body {
 .menu-sort,
 .menu-form {
   margin-top: 10px;
+}
+.menu-open-icon,
+.menu-close-icon {
+  display: none;
 }
 /* Idea Input */
 .idea-wrapper {
@@ -215,6 +220,23 @@ textarea {
   .search {
     width: 100%;
   }
+  .menu-open-icon {background-image: url(./icons/menu.svg);}
+  .menu-close-icon {background-image: url(./icons/menu-close.svg);}
+  .menu-open-icon,
+  .menu-close-icon {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .menu {
+    display: none;
+    position: fixed;
+    width: 100%;
+  }
 }
   
 /* Tablet Styles */
@@ -222,11 +244,17 @@ textarea {
   body {
     background-color: #F5CF8E; /* Yellow */
   }
+  .menu {
+    display: block;
+  }
 }
   
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
   body {
     background-color: #B2D6FF; /* Blue */
+  }
+  .menu {
+    display: block;
   }
 }

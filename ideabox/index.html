@@ -9,7 +9,8 @@
   <script defer src="main.js"></script>
 </head>
 <body>
-  <aside class="menu">
+  <aside class="menu" id="menu-id">
+    <div class="menu-close-icon" id="menu-close"></div>
     <header class="menu-section">
       <h1 class="menu-logo">IdeaBox</h1>
     </header>
@@ -33,6 +34,7 @@
   </aside>
   <main>
     <section class="idea-wrapper">
+      <div class="menu-open-icon" id="menu-open"></div>
       <form class="idea">
         <label class="form-element idea-label-text" for="title-input">Title</label>
         <input class="form-element idea-text-input" id="title-input" type="text">
@@ -46,7 +48,7 @@
       </form>
     </section>
     <section class="card-section" id="idea-card-section">
-      <!-- js ideas -->
+      <!--Cards get generated here-->
     </section>
   </main>
 </body>
