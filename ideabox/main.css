@@ -19,6 +19,7 @@ html {
 /* Body */
 body {
   font-family: 'Open Sans', sans-serif;
+  background-color: #eaeaf4;
 }
 /* Fonts */
 .menu-logo {
@@ -185,6 +186,7 @@ textarea {
   background-color: white;
   text-align: left;
   color: #1f1f3d;
+  height: 180px;
 }
 .card-title {
   font-size: 14px;
@@ -208,9 +210,6 @@ textarea {
 }
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-  body {
-    background-color: #F09A9D; /* Red */
-  }
   .menu-button,
   .menu-text-input,
   .idea-wrapper,
@@ -241,20 +240,77 @@ textarea {
   
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
-  body {
-    background-color: #F5CF8E; /* Yellow */
+  .menu-button,
+  .menu-text-input,
+  .idea-wrapper,
+  .idea-text-input,
+  .idea-button,
+  .search  {
+    width: 100%;
+  }
+  .menu-open-icon {background-image: url(./icons/menu.svg);}
+  .menu-close-icon {background-image: url(./icons/menu-close.svg);}
+  .menu-open-icon,
+  .menu-close-icon {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
   }
   .menu {
-    display: block;
+    display: none;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+  }
+  .card {
+    width: 300px;
+  }
+  .card-section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .idea {
+    width: 320px;
+    margin: 0 auto;
   }
 }
   
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-  body {
-    background-color: #B2D6FF; /* Blue */
-  }
   .menu {
     display: block;
+  }
+  body {
+    display: flex;
+  }
+  main {
+    width: 100%;
+  }
+  .idea-wrapper
+  .idea-text-input,
+  .idea-button,
+  .search  {
+    width: 100%;
+  }
+  .card {
+    width: 300px;
+  }
+  .card-section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .idea {
+    width: 320px;
+    margin: 0 auto;
+  }
+  html, body, .menu { 
+    height: auto;
+    min-height: 100vh; 
   }
 }
