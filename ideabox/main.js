@@ -6,12 +6,14 @@ var ideaCardSection = document.getElementById("idea-card-section");
 var menuOpenButton = document.getElementById("menu-open");
 var menuCloseButton = document.getElementById("menu-close");
 var menu = document.getElementById("menu-id");
+var showStarredButton = document.getElementById("show-starred-button");
 
 titleInput.addEventListener("input", enableSaveButton);
 bodyInput.addEventListener("input", enableSaveButton);
 saveButton.addEventListener("click", saveIdea);
 menuOpenButton.addEventListener("click", openMenu);
 menuCloseButton.addEventListener("click", closeMenu);
+showStarredButton.addEventListener("click", displayStarred);
 
 function displayIdeas() {
     for (let i = 0; i < localStorage.length; i++) {
@@ -37,6 +39,33 @@ function displayIdeas() {
                 </footer>
             </div>
         `);
+    }
+}
+function displayStarred() {
+    deleteAllIdeas();
+    for (let i = 0; i < localStorage.length; i++) {
+        let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        let fav = "";
+        if (ideaInstance.starred) {
+            fav = " favorite-starred";
+            ideaCardSection.innerHTML += (`
+                <div class="card">
+                    <header class="card-header">
+                        <div class="favorite${fav}"></div>
+                        <div class="delete"></div>
+                    </header>
+                    <main class="card-main">
+                        <h2 class="card-title">${ideaInstance.title}</h2>
+                        <p class="card-body">${ideaInstance.body}</p>
+                    </main>
+                    <footer class="quality">
+                        <div class="quality-up"></div>
+                        <span class="quality-label">Quality: ${ideaInstance.quality}</span>
+                        <div class="quality-down"></div>
+                    </footer>
+                </div>
+            `);
+        }
     }
 }
 function deleteAllIdeas() {

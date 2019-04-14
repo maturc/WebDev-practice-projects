@@ -104,7 +104,8 @@ body {
   font-weight: bold;
 }
 .idea-button:disabled {
-  background-color: #e0e0c2;
+  background-color: #a7a7b3;
+  cursor: no-drop;
 }
 .idea-button,
 .idea-label-text,
