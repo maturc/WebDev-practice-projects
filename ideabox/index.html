@@ -21,9 +21,9 @@
     <section class="menu-section">
       <h2 class="menu-label-text">Filter by Quality</h2>
       <ul class="menu-sort">
-        <li><a href="#">Swill</a></li>
-        <li><a href="#">Plausible</a></li>
-        <li><a href="#">Genius</a></li>
+        <li><a id="filter-swill" href="#">Swill</a></li>
+        <li><a id="filter-plausible" href="#">Plausible</a></li>
+        <li><a id="filter-genius" href="#">Genius</a></li>
       </ul>
       <form class="menu-form">
         <label class="form-element menu-label-text" for="quality-input">New Quality</label>
@@ -42,8 +42,7 @@
         <textarea class="form-element idea-text-input" id="body-input" rows="6"></textarea>
         <input class="form-element idea-button" id="save-button" type="button" value="Save" disabled>
         <div class="search">
-          <input class="search-button" type="button" value="">
-          <input class="search-input" type="text" placeholder="Search Ideas">
+          <input class="search-input" id="search-box" type="text" placeholder="Search Ideas">
         </div>
       </form>
     </section>

@@ -119,14 +119,6 @@ textarea {
   display: flex;
   justify-content: center;
 }
-.search-button {
-  background-image: url(./icons/search.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: #1f1f3d;
-  padding-right: 16px;
-}
 .search-input {
   width: 100%;
 }
