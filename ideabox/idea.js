@@ -9,13 +9,4 @@ class Idea {
     saveToStorage() {
         localStorage.setItem(this.title, JSON.stringify(this));
     }
-    deleteFromStorage() {
-        localStorage.removeItem(this.title, JSON.stringify(this));
-    }
-    updateIdea() {
-        localStorage.setItem(this.title, JSON.stringify(this));
-    }
-    updateQuality() {
-        localStorage.setItem();
-    }
 }
