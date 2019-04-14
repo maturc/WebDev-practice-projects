@@ -1,4 +1,3 @@
-"use strict";
 class Idea {
     constructor (title, body) {
         this.title = String(title);

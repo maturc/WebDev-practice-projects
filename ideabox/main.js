@@ -7,6 +7,10 @@ var menuOpenButton = document.getElementById("menu-open");
 var menuCloseButton = document.getElementById("menu-close");
 var menu = document.getElementById("menu-id");
 var showStarredButton = document.getElementById("show-starred-button");
+var searchBox = document.getElementById("search-box");
+var filterSwill = document.getElementById("filter-swill");
+var filterPlausible = document.getElementById("filter-plausible");
+var filterGenius = document.getElementById("filter-genius");
 
 titleInput.addEventListener("input", enableSaveButton);
 bodyInput.addEventListener("input", enableSaveButton);
@@ -14,59 +18,79 @@ saveButton.addEventListener("click", saveIdea);
 menuOpenButton.addEventListener("click", openMenu);
 menuCloseButton.addEventListener("click", closeMenu);
 showStarredButton.addEventListener("click", displayStarred);
+searchBox.addEventListener("input", searchIdeas);
+filterSwill.addEventListener("click", function(event) {
+    filterIdeas(event, "Swill");
+});
+filterPlausible.addEventListener("click", function(event) {
+    filterIdeas(event, "Plausible");
+});
+filterGenius.addEventListener("click", function(event) {
+    filterIdeas(event, "Genius");
+});
+
+displayIdeas();
 
 function displayIdeas() {
     for (let i = 0; i < localStorage.length; i++) {
         let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        let fav = "";
-        if (ideaInstance.starred) {
-            fav = " favorite-starred";
-        }
-        ideaCardSection.innerHTML += (`
-            <div class="card">
-                <header class="card-header">
-                    <div class="favorite${fav}"></div>
-                    <div class="delete"></div>
-                </header>
-                <main class="card-main">
-                    <h2 class="card-title">${ideaInstance.title}</h2>
-                    <p class="card-body">${ideaInstance.body}</p>
-                </main>
-                <footer class="quality">
-                    <div class="quality-up"></div>
-                    <span class="quality-label">Quality: ${ideaInstance.quality}</span>
-                    <div class="quality-down"></div>
-                </footer>
-            </div>
-        `);
+        generateHtml(ideaInstance);
     }
+    cardButtonEvents();
 }
 function displayStarred() {
     deleteAllIdeas();
     for (let i = 0; i < localStorage.length; i++) {
         let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        let fav = "";
         if (ideaInstance.starred) {
-            fav = " favorite-starred";
-            ideaCardSection.innerHTML += (`
-                <div class="card">
-                    <header class="card-header">
-                        <div class="favorite${fav}"></div>
-                        <div class="delete"></div>
-                    </header>
-                    <main class="card-main">
-                        <h2 class="card-title">${ideaInstance.title}</h2>
-                        <p class="card-body">${ideaInstance.body}</p>
-                    </main>
-                    <footer class="quality">
-                        <div class="quality-up"></div>
-                        <span class="quality-label">Quality: ${ideaInstance.quality}</span>
-                        <div class="quality-down"></div>
-                    </footer>
-                </div>
-            `);
+            generateHtml(ideaInstance);
         }
     }
+    cardButtonEvents();
+}
+function filterIdeas(event, quality) {
+    event.preventDefault();
+    deleteAllIdeas();
+    for (let i = 0; i < localStorage.length; i++) {
+        let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        if (ideaInstance.quality == quality) {
+            generateHtml(ideaInstance);
+        }
+    }
+    cardButtonEvents();
+}
+function searchIdeas() {
+    deleteAllIdeas();
+    for (let i = 0; i < localStorage.length; i++) {
+        let ideaInstance = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        if (ideaInstance.title.toLowerCase().includes(searchBox.value.toLowerCase())) {
+            generateHtml(ideaInstance); 
+        }
+    }
+    cardButtonEvents();
+}
+function generateHtml(ideaInstance) {
+    let fav = "";
+    if (ideaInstance.starred) {
+        fav = " favorite-starred";
+    }
+    ideaCardSection.innerHTML += (`
+        <div class="card">
+            <header class="card-header">
+                <div class="favorite${fav}"></div>
+                <div class="delete"></div>
+            </header>
+            <main class="card-main">
+                <h2 class="card-title">${ideaInstance.title}</h2>
+                <p class="card-body">${ideaInstance.body}</p>
+            </main>
+            <footer class="quality">
+                <div class="quality-up"></div>
+                <span class="quality-label">Quality: ${ideaInstance.quality}</span>
+                <div class="quality-down"></div>
+            </footer>
+        </div>
+    `);
 }
 function deleteAllIdeas() {
     let cardCollection = document.getElementsByClassName("card");
@@ -83,12 +107,14 @@ function enableSaveButton() {
     }
 }
 function saveIdea() {
-    let ideaInstance = new Idea(titleInput.value, bodyInput.value); //make this a function perhaps
+    let ideaInstance = new Idea(titleInput.value, bodyInput.value);
     ideaInstance.saveToStorage();
     deleteAllIdeas();
     displayIdeas();
+    cardButtonEvents();
 }
-function deleteIdea() {
+/* Attach delete, upvote, downvote and starred button events to every card */
+function cardButtonEvents() {
     for (let i = 0; i < ideaCardSection.childElementCount; i++) {
         /* Delete button event */
         ideaCardSection.children[i].getElementsByClassName("delete")[0].addEventListener("click", function(e){
@@ -129,6 +155,7 @@ function deleteIdea() {
             e.target.closest(".card").getElementsByClassName("quality-label")[0].innerText = `Quality: ${ideaInstance.quality}`;
             localStorage.setItem(title, JSON.stringify(ideaInstance));
         });
+        /* Starred button event */
         ideaCardSection.children[i].getElementsByClassName("favorite")[0].addEventListener("click", function(e){
             let title = e.target.parentElement.parentElement.getElementsByClassName("card-title")[0].innerText;
             let ideaInstance = JSON.parse(localStorage.getItem(title));
@@ -148,5 +175,3 @@ function openMenu() {
 function closeMenu() {
     menu.style.display = "none";
 }
-displayIdeas();
-deleteIdea();
