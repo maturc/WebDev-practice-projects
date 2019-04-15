@@ -73,6 +73,7 @@ function createCard(winner, numGuesses) {
             <button class="close"></button>
         </div>
     </div>`;
+    closeButtonEvent();
 }
 //update button
 updateButton.addEventListener("click", function(){
@@ -190,6 +191,10 @@ inputArray.forEach(function(elem) {
     });
 });
 //closeButton
-winnerCardParent[0].addEventListener("click", function(e){
-    e.target.parentNode.parentNode.remove();
-});
+function closeButtonEvent() {
+    for (let i = 0; i < winnerCardParent[0].childElementCount; i++) {
+        winnerCardParent[0].children[i].getElementsByClassName("close")[0].addEventListener("click", function(e){
+            e.target.closest(".winner-box").remove();
+        });
+    }
+}
