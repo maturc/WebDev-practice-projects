@@ -1,6 +1,5 @@
 # WebDev-practice-projects
 Collection of projects that I created to help me learn web development.
-
 Each folder is a seperate webpage.
 
 Links to project pages:
