@@ -3,81 +3,62 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleCityInputChange = this.handleCityInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleCityInputChange(e) {
-    this.props.onCityInputChange(e.target.value);
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.onSubmit();
-  }
   render() {
     const cityName = this.props.cityName;
+    const countryName = this.props.countryName;
+    const handleCityInputChange = this.props.handleCityInputChange;
+    const handleCountryInputChange = this.props.handleCountryInputChange;
+    const handleSubmit = this.props.handleSubmit;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)} >
         <input
           type="text"
           value={cityName}
-          onChange={this.handleCityInputChange} />
+          placeholder="City..."
+          onChange={(e) => handleCityInputChange(e.target.value)} />
+        <input
+          type="text"
+          value={countryName}
+          placeholder="Country..."
+          onChange={(e) => handleCountryInputChange(e.target.value)} />
         <input
           type="submit"
           value="Submit"
-          />
+        />
       </form>
     );
   }
 }
-class Week extends React.Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
-class Day extends React.Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
-
 class App extends React.Component {
   constructor(prop) {
     super(prop);
     this.state = {
       cityName: "",
-      name: ""
+      countryName: ""
     };
     this.handleCityInputChange = this.handleCityInputChange.bind(this);
+    this.handleCountryInputChange = this.handleCountryInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  getWeather(city, country) {
-    return fetch('https://samples.openweathermap.org/data/2.5/forecast?q={city},{country}&appid=e74587f77136920cc8551103a502e698')
-      .then(response => response.json())
-      .then((jsonData) => {
-        // jsonData is parsed json object received from url
-        console.log(jsonData)
-      })
-      .catch((error) => {
-        // handle your errors here
-        console.error(error)
-      })
+  getWeather = async (city, country) => {
+    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=e74587f77136920cc8551103a502e698`);  
+    const response = await api_call.json();  
+    console.log(response);    
   }
   handleCityInputChange(name) {
     this.setState({
       cityName: name
     });
   }
-  handleSubmit() {
-    this.getWeather(this.state.cityName, "uk");
+  handleCountryInputChange(name) {
+    this.setState({
+      countryName: name
+    });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.getWeather(this.state.cityName, this.state.countryName);
   }
 
   render() {
@@ -85,11 +66,11 @@ class App extends React.Component {
       <div>
         <Search 
           cityName={this.state.cityName}
-          onCityInputChange={this.handleCityInputChange}
-          onSubmit={this.handleSubmit}
+          countryName={this.state.countryName}
+          handleCityInputChange={this.handleCityInputChange}
+          handleCountryInputChange={this.handleCountryInputChange}
+          handleSubmit={this.handleSubmit}
         />
-        <Week />
-        <Day />
       </div>
     );
   }
