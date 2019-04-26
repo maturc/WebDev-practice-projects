@@ -13,7 +13,12 @@ function Graphs(props) {
   );
 }
 function WeatherDisplay(props) {
-  if(props.renderWeatherDisplay) {
+  if(props.weatherForecast.cod === "404") {
+    return (
+      <span>City not found.</span>
+    );
+  }
+  else if(props.renderWeatherDisplay) {
     const weatherForecast = props.weatherForecast;
     console.log(weatherForecast);
     const cityName = weatherForecast.city.name;
