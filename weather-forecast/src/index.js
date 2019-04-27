@@ -4,12 +4,12 @@ import './index.css';
 //C &#8451; F &#8457;
 function Days(props) {
   return (
-    <div></div>
+    <div>{/*add d3 graphs*/}</div>
   );
 }
 function Graphs(props) {
   return (
-    <div></div>
+    <div>{/*add d3 graphs*/}</div>
   );
 }
 function WeatherDisplay(props) {
