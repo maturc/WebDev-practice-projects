@@ -10,11 +10,22 @@ function Days(props) {
 }
 function Graphs(props) {
   const weatherForecast = props.weatherForecast;
-  let weatherArray = [];
+  let temperatureArray = [];
+  let precipitationArray = [];
+  let windArray = [];
   weatherForecast.list.forEach(element => {
-    weatherArray.push(element.main.temp);
+    temperatureArray.push(Math.round(element.main.temp-272.15));
+    //rain can have a NaN value
+    if (element.hasOwnProperty("rain")) {
+      precipitationArray.push(element.rain['3h']*10);
+    } else {
+      precipitationArray.push(0);
+    }
+    windArray.push(element.wind.speed);
   });
-  console.log(weatherArray);
+  console.log(temperatureArray);
+  console.log(precipitationArray);
+  console.log(windArray);
   return (
     <div>
       
@@ -48,10 +59,10 @@ function WeatherDisplay(props) {
         </div>
         <div>
           //icon
-          {Math.round(weatherForecast.list[0].main.temp-272.15)}&#8457;
+          {Math.round(weatherForecast.list[0].main.temp-272.15)}&#8451;
         </div>
         <div>
-          <span>Rain: {rain}&#37;</span>
+          <span>Precipitation: {rain}&#37;</span>
           <span>Humidity: {weatherForecast.list[0].main.humidity}&#37;</span>
           <span>Wind: {weatherForecast.list[0].wind.speed} m/s</span>
         </div>
