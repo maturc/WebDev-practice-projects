@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as d3 from "d3";
 import './index.css';
 //C &#8451; F &#8457;
 function Days(props) {
@@ -8,8 +9,16 @@ function Days(props) {
   );
 }
 function Graphs(props) {
+  const weatherForecast = props.weatherForecast;
+  let weatherArray = [];
+  weatherForecast.list.forEach(element => {
+    weatherArray.push(element.main.temp);
+  });
+  console.log(weatherArray);
   return (
-    <div>{/*add d3 graphs*/}</div>
+    <div>
+      
+    </div>
   );
 }
 function WeatherDisplay(props) {
@@ -23,6 +32,13 @@ function WeatherDisplay(props) {
     console.log(weatherForecast);
     const cityName = weatherForecast.city.name;
     const countryName = weatherForecast.city.country;
+    let rain;
+    if (weatherForecast.list[0].hasOwnProperty("rain")) {
+      rain = weatherForecast.list[0].rain['3h']*10;
+    } else {
+      rain = 0;
+    }
+
     return (
       <div>
         <div>
@@ -35,11 +51,13 @@ function WeatherDisplay(props) {
           {Math.round(weatherForecast.list[0].main.temp-272.15)}&#8457;
         </div>
         <div>
-          <span>Rain: {weatherForecast.list[0].rain['3h']*10}&#37;</span>
+          <span>Rain: {rain}&#37;</span>
           <span>Humidity: {weatherForecast.list[0].main.humidity}&#37;</span>
           <span>Wind: {weatherForecast.list[0].wind.speed} m/s</span>
         </div>
-        <Graphs />
+        <Graphs
+          weatherForecast={props.weatherForecast}
+        />
         <Days/>
       </div>
     );
