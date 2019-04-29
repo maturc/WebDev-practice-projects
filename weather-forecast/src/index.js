@@ -8,29 +8,48 @@ function Days(props) {
     <div>{/*add d3 graphs*/}</div>
   );
 }
-function Graphs(props) {
-  const weatherForecast = props.weatherForecast;
-  let temperatureArray = [];
-  let precipitationArray = [];
-  let windArray = [];
-  weatherForecast.list.forEach(element => {
-    temperatureArray.push(Math.round(element.main.temp-272.15));
-    //rain can have a NaN value
-    if (element.hasOwnProperty("rain")) {
-      precipitationArray.push(element.rain['3h']*10);
-    } else {
-      precipitationArray.push(0);
-    }
-    windArray.push(element.wind.speed);
-  });
-  console.log(temperatureArray);
-  console.log(precipitationArray);
-  console.log(windArray);
-  return (
-    <div>
-      
-    </div>
-  );
+class Graphs extends React.Component {
+
+  componentDidMount() {
+    this.drawGraph();
+  }
+  drawGraph() {
+    //should look into making this more eficiant later
+    const weatherForecast = this.props.weatherForecast;
+    let temperatureArray = [];
+    let precipitationArray = [];
+    let windArray = [];
+    weatherForecast.list.forEach(element => {
+      temperatureArray.push(Math.round(element.main.temp-272.15));
+      //rain can have a NaN value
+      if (element.hasOwnProperty("rain")) {
+        precipitationArray.push(element.rain['3h']*10);
+      } else {
+        precipitationArray.push(0);
+      }
+      windArray.push(element.wind.speed);
+    });
+    console.log(temperatureArray);
+    console.log(precipitationArray);
+    console.log(windArray);
+
+    d3.select(".graph-div")
+      .selectAll("div")
+      .data(temperatureArray)
+        .enter()
+        .append("div")
+        .style("width", function(d) { return d*10 + "px"; })
+        //should be in a css file
+        .style("height", 10)
+        .style("background-color", "black")
+        //
+        .text(function(d) { return d; })
+  }
+  render() {
+    return (
+      <div className="graph-div"></div>
+    );
+  }
 }
 function WeatherDisplay(props) {
   if(props.weatherForecast.cod === "404") {
@@ -102,8 +121,8 @@ function Search(props) {
   );
 }
 class App extends React.Component {
-  constructor(prop) {
-    super(prop);
+  constructor(props) {
+    super(props);
     this.state = {
       cityName: "",
       countryName: "",
