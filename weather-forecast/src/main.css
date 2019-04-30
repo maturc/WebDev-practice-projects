@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 10px;
+}
+
+.graph {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  text-align: center;
+}
+
+.graph > * {
+  background-color: lightblue;
+  width: 50px;
+  margin: 0.5px;
+}
+/*# sourceMappingURL=main.css.map */

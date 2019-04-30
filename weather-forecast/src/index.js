@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as d3 from "d3";
-import './index.css';
+import './main.css';
 //C &#8451; F &#8457;
 function Days(props) {
   return (
@@ -9,12 +9,22 @@ function Days(props) {
   );
 }
 class Graphs extends React.Component {
-
-  componentDidMount() {
-    this.drawGraph();
+  constructor(props) {
+    super(props);
+    this.state = {
+      temperatureArray: [],
+      precipitationArray: [],
+      windArray: []
+    }
+    this.drawTempGraph = this.drawTempGraph.bind(this);
+    this.drawRainGraph = this.drawRainGraph.bind(this);
+    this.drawWindGraph = this.drawWindGraph.bind(this);
   }
-  drawGraph() {
-    //should look into making this more eficiant later
+  componentDidMount() {
+    this.setForecastArray();
+    this.drawTempGraph();
+  }
+  setForecastArray() {
     const weatherForecast = this.props.weatherForecast;
     let temperatureArray = [];
     let precipitationArray = [];
@@ -29,25 +39,59 @@ class Graphs extends React.Component {
       }
       windArray.push(element.wind.speed);
     });
+    this.setState({
+      temperatureArray: temperatureArray,
+      precipitationArray: precipitationArray,
+      windArray: windArray
+    });
     console.log(temperatureArray);
     console.log(precipitationArray);
     console.log(windArray);
-
-    d3.select(".graph-div")
+  }
+  drawTempGraph() {
+    d3.select(".graph")
       .selectAll("div")
-      .data(temperatureArray)
+      .data(this.state.temperatureArray)
         .enter()
         .append("div")
-        .style("width", function(d) { return d*10 + "px"; })
-        //should be in a css file
-        .style("height", 10)
-        .style("background-color", "black")
-        //
-        .text(function(d) { return d; })
+        .style("height", function(d) { return d*10 + "px"; })
+        .text(function(d) { return d + "°C"; })
+    console.log("rendered");
+    console.log(this.state.temperatureArray);
+    console.log("rendered");
+  }
+  drawRainGraph() {
+    d3.select(".graph")
+      .selectAll("div")
+      .data(this.state.precipitationArray)
+        .enter()
+        .append("div")
+        .style("height", function(d) { return d*10 + "px"; })
+        .text(function(d) { return d + "%"; })
+    console.log("rendered");
+    console.log(this.state.precipitationArray);
+    console.log("rendered");
+  }
+  drawWindGraph() {
+    d3.select(".graph")
+      .selectAll("div")
+      .data(this.state.windArray)
+        .enter()
+        .append("div")
+        .style("height", function(d) { return d*10 + "px"; })
+        .text(function(d) { return d + "m/s"; })
+    console.log("rendered");
   }
   render() {
     return (
-      <div className="graph-div"></div>
+      <div>
+        <div>
+          <button onClick={this.drawTempGraph}>Temperature</button>
+          <button onClick={this.drawRainGraph}>Precipitation</button>
+          <button onClick={this.drawWindGraph}>Wind</button>
+        </div>
+        <div className="graph"></div>
+      </div>
     );
   }
 }
