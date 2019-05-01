@@ -20,35 +20,41 @@ class Graphs extends React.Component {
     this.drawRainGraph = this.drawRainGraph.bind(this);
     this.drawWindGraph = this.drawWindGraph.bind(this);
   }
-  componentDidMount() {
+  componentWillMount() {
     this.setForecastArray();
     this.drawTempGraph();
   }
   setForecastArray() {
     const weatherForecast = this.props.weatherForecast;
-    let temperatureArray = [];
-    let precipitationArray = [];
-    let windArray = [];
+    let temperature = [];
+    let precipitation = [];
+    let wind = [];
     weatherForecast.list.forEach(element => {
-      temperatureArray.push(Math.round(element.main.temp-272.15));
+      temperature.push(Math.round(element.main.temp-272.15));
       //rain can have a NaN value
-      if (element.hasOwnProperty("rain")) {
-        precipitationArray.push(element.rain['3h']*10);
+      if (!element.hasOwnProperty("rain")) {
+          precipitation.push(0);
+      } else if (isNaN(element.rain['3h'])) {
+          precipitation.push(0);
       } else {
-        precipitationArray.push(0);
+        precipitation.push(Math.round(element.rain['3h']*10));
       }
-      windArray.push(element.wind.speed);
+      wind.push(element.wind.speed);
     });
+    //this is async, need to wait for it
     this.setState({
-      temperatureArray: temperatureArray,
-      precipitationArray: precipitationArray,
-      windArray: windArray
+      temperatureArray: temperature,
+      precipitationArray: precipitation,
+      windArray: wind
     });
-    console.log(temperatureArray);
-    console.log(precipitationArray);
-    console.log(windArray);
+    console.log(this.state.temperatureArray);
+    console.log(this.state.precipitationArray);
+    console.log(this.state.windArray);
   }
   drawTempGraph() {
+    d3.select(".graph")
+      .selectAll("div")
+      .remove()
     d3.select(".graph")
       .selectAll("div")
       .data(this.state.temperatureArray)
@@ -56,11 +62,14 @@ class Graphs extends React.Component {
         .append("div")
         .style("height", function(d) { return d*10 + "px"; })
         .text(function(d) { return d + "°C"; })
-    console.log("rendered");
+    console.log("rendered-first");
     console.log(this.state.temperatureArray);
-    console.log("rendered");
+    console.log("rendered-last");
   }
   drawRainGraph() {
+    d3.select(".graph")
+      .selectAll("div")
+      .remove()
     d3.select(".graph")
       .selectAll("div")
       .data(this.state.precipitationArray)
@@ -75,10 +84,13 @@ class Graphs extends React.Component {
   drawWindGraph() {
     d3.select(".graph")
       .selectAll("div")
+      .remove()
+    d3.select(".graph")
+      .selectAll("div")
       .data(this.state.windArray)
         .enter()
         .append("div")
-        .style("height", function(d) { return d*10 + "px"; })
+        .style("height", function(d) { return d*20 + "px"; })
         .text(function(d) { return d + "m/s"; })
     console.log("rendered");
   }
