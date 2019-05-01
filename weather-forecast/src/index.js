@@ -11,45 +11,12 @@ function Days(props) {
 class Graphs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      temperatureArray: [],
-      precipitationArray: [],
-      windArray: []
-    }
     this.drawTempGraph = this.drawTempGraph.bind(this);
     this.drawRainGraph = this.drawRainGraph.bind(this);
     this.drawWindGraph = this.drawWindGraph.bind(this);
   }
-  componentWillMount() {
-    this.setForecastArray();
+  componentDidMount() {
     this.drawTempGraph();
-  }
-  setForecastArray() {
-    const weatherForecast = this.props.weatherForecast;
-    let temperature = [];
-    let precipitation = [];
-    let wind = [];
-    weatherForecast.list.forEach(element => {
-      temperature.push(Math.round(element.main.temp-272.15));
-      //rain can have a NaN value
-      if (!element.hasOwnProperty("rain")) {
-          precipitation.push(0);
-      } else if (isNaN(element.rain['3h'])) {
-          precipitation.push(0);
-      } else {
-        precipitation.push(Math.round(element.rain['3h']*10));
-      }
-      wind.push(element.wind.speed);
-    });
-    //this is async, need to wait for it
-    this.setState({
-      temperatureArray: temperature,
-      precipitationArray: precipitation,
-      windArray: wind
-    });
-    console.log(this.state.temperatureArray);
-    console.log(this.state.precipitationArray);
-    console.log(this.state.windArray);
   }
   drawTempGraph() {
     d3.select(".graph")
@@ -57,14 +24,13 @@ class Graphs extends React.Component {
       .remove()
     d3.select(".graph")
       .selectAll("div")
-      .data(this.state.temperatureArray)
+      .data(this.props.temperatureArray)
         .enter()
         .append("div")
         .style("height", function(d) { return d*10 + "px"; })
         .text(function(d) { return d + "°C"; })
-    console.log("rendered-first");
-    console.log(this.state.temperatureArray);
-    console.log("rendered-last");
+    console.log("%c temperature array", "font-weight: bold;" );
+    console.log(this.props.temperatureArray);
   }
   drawRainGraph() {
     d3.select(".graph")
@@ -72,13 +38,13 @@ class Graphs extends React.Component {
       .remove()
     d3.select(".graph")
       .selectAll("div")
-      .data(this.state.precipitationArray)
+      .data(this.props.precipitationArray)
         .enter()
         .append("div")
         .style("height", function(d) { return d*10 + "px"; })
         .text(function(d) { return d + "%"; })
     console.log("rendered");
-    console.log(this.state.precipitationArray);
+    console.log(this.props.precipitationArray);
     console.log("rendered");
   }
   drawWindGraph() {
@@ -87,7 +53,7 @@ class Graphs extends React.Component {
       .remove()
     d3.select(".graph")
       .selectAll("div")
-      .data(this.state.windArray)
+      .data(this.props.windArray)
         .enter()
         .append("div")
         .style("height", function(d) { return d*20 + "px"; })
@@ -133,7 +99,7 @@ function WeatherDisplay(props) {
           <span>{weatherForecast.list[0].weather[0].description}</span>
         </div>
         <div>
-          //icon
+          icon
           {Math.round(weatherForecast.list[0].main.temp-272.15)}&#8451;
         </div>
         <div>
@@ -143,6 +109,9 @@ function WeatherDisplay(props) {
         </div>
         <Graphs
           weatherForecast={props.weatherForecast}
+          temperatureArray={props.temperatureArray}
+          precipitationArray={props.precipitationArray}
+          windArray={props.windArray}
         />
         <Days/>
       </div>
@@ -183,7 +152,10 @@ class App extends React.Component {
       cityName: "",
       countryName: "",
       renderWeatherDisplay: false,
-      weatherForecast: {}
+      weatherForecast: {},
+      temperatureArray: [],
+      precipitationArray: [],
+      windArray: []
     };
     this.handleCityInputChange = this.handleCityInputChange.bind(this);
     this.handleCountryInputChange = this.handleCountryInputChange.bind(this);
@@ -208,9 +180,27 @@ class App extends React.Component {
     e.preventDefault();
     const weatherForecastObj = await this.getWeather(this.state.cityName, this.state.countryName);
     //add condition for change state if getweather fails
+    let temperature = [];
+    let precipitation = [];
+    let wind = [];
+    weatherForecastObj.list.forEach(element => {
+      temperature.push(Math.round(element.main.temp-272.15));
+      //rain can have a NaN value
+      if (!element.hasOwnProperty("rain")) {
+          precipitation.push(0);
+      } else if (isNaN(element.rain['3h'])) {
+          precipitation.push(0);
+      } else {
+        precipitation.push(Math.round(element.rain['3h']*10));
+      }
+      wind.push(element.wind.speed);
+    });
     this.setState({
       renderWeatherDisplay: true,
-      weatherForecast: weatherForecastObj
+      weatherForecast: weatherForecastObj,
+      temperatureArray: temperature,
+      precipitationArray: precipitation,
+      windArray: wind
     });
   }
 
@@ -229,6 +219,9 @@ class App extends React.Component {
           countryName={this.state.countryName}
           renderWeatherDisplay={this.state.renderWeatherDisplay}
           weatherForecast={this.state.weatherForecast}
+          temperatureArray={this.state.temperatureArray}
+          precipitationArray={this.state.precipitationArray}
+          windArray={this.state.windArray}
         />
       </div>
     );
