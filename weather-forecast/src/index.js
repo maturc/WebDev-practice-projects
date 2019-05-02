@@ -19,6 +19,9 @@ class Graphs extends React.Component {
     this.drawTempGraph();
   }
   drawTempGraph() {
+    const heightScale = d3.scaleLinear()
+      .domain([0, 60])
+      .range([0, 1000]);
     d3.select(".graph")
       .selectAll("div")
       .remove()
@@ -27,12 +30,15 @@ class Graphs extends React.Component {
       .data(this.props.temperatureArray)
         .enter()
         .append("div")
-        .style("height", function(d) { return d*10 + "px"; })
+        .style("height", function(d) { return heightScale(d) + "px"; })
         .text(function(d) { return d + "°C"; })
     console.log("%c temperature array", "font-weight: bold;" );
     console.log(this.props.temperatureArray);
   }
   drawRainGraph() {
+    const heightScale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, 1000]);
     d3.select(".graph")
       .selectAll("div")
       .remove()
@@ -41,22 +47,25 @@ class Graphs extends React.Component {
       .data(this.props.precipitationArray)
         .enter()
         .append("div")
-        .style("height", function(d) { return d*10 + "px"; })
+        .style("height", function(d) { return heightScale(d) + "px"; })
         .text(function(d) { return d + "%"; })
     console.log("rendered");
     console.log(this.props.precipitationArray);
     console.log("rendered");
   }
   drawWindGraph() {
+    const heightScale = d3.scaleLinear()
+      .domain([0, 20])
+      .range([0, 1000]);
     d3.select(".graph")
       .selectAll("div")
       .remove()
-    d3.select(".graph")
+    const g = d3.select(".graph")
       .selectAll("div")
       .data(this.props.windArray)
         .enter()
         .append("div")
-        .style("height", function(d) { return d*20 + "px"; })
+        .style("height", function(d) { return heightScale(d) + "px"; })
         .text(function(d) { return d + "m/s"; })
     console.log("rendered");
   }
@@ -112,6 +121,7 @@ function WeatherDisplay(props) {
           temperatureArray={props.temperatureArray}
           precipitationArray={props.precipitationArray}
           windArray={props.windArray}
+          dateTimeArray={props.dateTimeArray}
         />
         <Days/>
       </div>
@@ -155,7 +165,8 @@ class App extends React.Component {
       weatherForecast: {},
       temperatureArray: [],
       precipitationArray: [],
-      windArray: []
+      windArray: [],
+      dateTimeArray: []
     };
     this.handleCityInputChange = this.handleCityInputChange.bind(this);
     this.handleCountryInputChange = this.handleCountryInputChange.bind(this);
@@ -183,6 +194,7 @@ class App extends React.Component {
     let temperature = [];
     let precipitation = [];
     let wind = [];
+    let dTime = [];
     weatherForecastObj.list.forEach(element => {
       temperature.push(Math.round(element.main.temp-272.15));
       //rain can have a NaN value
@@ -194,13 +206,15 @@ class App extends React.Component {
         precipitation.push(Math.round(element.rain['3h']*10));
       }
       wind.push(element.wind.speed);
+      dTime.push(element.dt)
     });
     this.setState({
       renderWeatherDisplay: true,
       weatherForecast: weatherForecastObj,
       temperatureArray: temperature,
       precipitationArray: precipitation,
-      windArray: wind
+      windArray: wind,
+      dateTimeArray: dTime
     });
   }
 
@@ -222,6 +236,7 @@ class App extends React.Component {
           temperatureArray={this.state.temperatureArray}
           precipitationArray={this.state.precipitationArray}
           windArray={this.state.windArray}
+          dateTimeArray={this.state.dateTimeArray}
         />
       </div>
     );
