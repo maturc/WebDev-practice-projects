@@ -17,57 +17,67 @@ class Graphs extends React.Component {
   }
   componentDidMount() {
     this.drawTempGraph();
+    this.dateTime();
+  }
+  removeGraph() {
+    d3.select(".graph")
+    .selectAll("*")
+    .remove()
+  }
+  dateTime() {
+    let dateTimeArray = [...this.props.dateTimeArray];
+    dateTimeArray.splice(8);
+    d3.select(".dt")
+      .selectAll("time")
+      .data(dateTimeArray)
+        .enter()
+        .append("time")
+        .text(function(d) { return d; })
   }
   drawTempGraph() {
+    let temperatureArray = [...this.props.temperatureArray];
+    temperatureArray.splice(8);
     const heightScale = d3.scaleLinear()
       .domain([0, 60])
-      .range([0, 1000]);
+      .range([0, 500]);
+    this.removeGraph();
     d3.select(".graph")
-      .selectAll("div")
-      .remove()
-    d3.select(".graph")
-      .selectAll("div")
-      .data(this.props.temperatureArray)
+      .selectAll("temp")
+      .data(temperatureArray)
         .enter()
-        .append("div")
+        .append("temp")
         .style("height", function(d) { return heightScale(d) + "px"; })
         .text(function(d) { return d + "°C"; })
-    console.log("%c temperature array", "font-weight: bold;" );
-    console.log(this.props.temperatureArray);
   }
   drawRainGraph() {
+    let precipitationArray = [...this.props.precipitationArray];
+    precipitationArray.splice(8);
     const heightScale = d3.scaleLinear()
       .domain([0, 100])
-      .range([0, 1000]);
+      .range([0, 500]);
+    this.removeGraph();
     d3.select(".graph")
-      .selectAll("div")
-      .remove()
-    d3.select(".graph")
-      .selectAll("div")
-      .data(this.props.precipitationArray)
+      .selectAll("rain")
+      .data(precipitationArray)
         .enter()
-        .append("div")
+        .append("rain")
         .style("height", function(d) { return heightScale(d) + "px"; })
         .text(function(d) { return d + "%"; })
-    console.log("rendered");
-    console.log(this.props.precipitationArray);
-    console.log("rendered");
   }
   drawWindGraph() {
+    let windArray = [...this.props.windArray];
+    windArray.splice(8);
     const heightScale = d3.scaleLinear()
       .domain([0, 20])
-      .range([0, 1000]);
+      .range([0, 500]);
+    this.removeGraph();
     d3.select(".graph")
-      .selectAll("div")
-      .remove()
-    const g = d3.select(".graph")
-      .selectAll("div")
-      .data(this.props.windArray)
+      .selectAll("wind")
+      .data(windArray)
         .enter()
-        .append("div")
+        .append("wind")
         .style("height", function(d) { return heightScale(d) + "px"; })
         .text(function(d) { return d + "m/s"; })
-    console.log("rendered");
   }
   render() {
     return (
@@ -78,6 +88,7 @@ class Graphs extends React.Component {
           <button onClick={this.drawWindGraph}>Wind</button>
         </div>
         <div className="graph"></div>
+        <div className="dt"></div>
       </div>
     );
   }
@@ -206,7 +217,7 @@ class App extends React.Component {
         precipitation.push(Math.round(element.rain['3h']*10));
       }
       wind.push(element.wind.speed);
-      dTime.push(element.dt)
+      dTime.push(element.dt_txt.slice(-8,-3))
     });
     this.setState({
       renderWeatherDisplay: true,
