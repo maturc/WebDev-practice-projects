@@ -4,7 +4,7 @@ body {
 }
 
 body .graph {
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 body .graph, body .dt {
@@ -21,9 +21,14 @@ body .graph > temp, body .graph rain, body .graph wind, body .dt > temp, body .d
   background-color: lightblue;
 }
 
+body .graph > temp > p, body .graph rain > p, body .graph wind > p, body .dt > temp > p, body .dt rain > p, body .dt wind > p {
+  -webkit-transform: translateY(-37px);
+          transform: translateY(-37px);
+}
+
 body .graph > *, body .dt > * {
   width: 60px;
-  padding: 5px;
+  padding: 1px 5px;
   margin: 0.5px;
 }
 /*# sourceMappingURL=main.css.map */
