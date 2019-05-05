@@ -37,14 +37,12 @@ class App extends React.Component {
   async handleSubmit(e) {
     e.preventDefault();
     const weatherForecastObj = await this.getWeather(this.state.cityName, this.state.countryName);
-    //add condition for change state if getweather fails
     let temperature = [];
     let precipitation = [];
     let wind = [];
     let dTime = [];
     weatherForecastObj.list.forEach(element => {
       temperature.push(Math.round(element.main.temp-272.15));
-      //rain can have a NaN value
       if (!element.hasOwnProperty("rain")) {
           precipitation.push(0);
       } else if (isNaN(element.rain['3h'])) {
