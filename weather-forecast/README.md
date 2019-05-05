@@ -1,6 +1,5 @@
 # Weather forecast
 Goal: A project that will help me learn the fundamentals of react js
-
 The app looks like this:
 
 ![Weather forecast app](./preview.png)
