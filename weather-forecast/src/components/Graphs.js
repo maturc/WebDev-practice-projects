@@ -78,11 +78,9 @@ class Graphs extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <button onClick={this.drawTempGraph}>Temperature</button>
-          <button onClick={this.drawRainGraph}>Precipitation</button>
-          <button onClick={this.drawWindGraph}>Wind</button>
-        </div>
+        <button onClick={this.drawTempGraph}>Temperature</button>
+        <button onClick={this.drawRainGraph}>Precipitation</button>
+        <button onClick={this.drawWindGraph}>Wind</button>
         <div className="graph"></div>
         <div className="dt"></div>
       </div>

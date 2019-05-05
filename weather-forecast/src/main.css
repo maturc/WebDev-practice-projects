@@ -1,13 +1,17 @@
 body {
-  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
   padding: 10px;
+  font-weight: 300;
 }
 
-body .graph {
+.graph {
   margin-top: 30px;
+  font-weight: 400;
 }
 
-body .graph, body .dt {
+.graph, .dt {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,18 +21,26 @@ body .graph, body .dt {
   text-align: center;
 }
 
-body .graph > temp, body .graph rain, body .graph wind, body .dt > temp, body .dt rain, body .dt wind {
+.graph > temp, .graph rain, .graph wind, .dt > temp, .dt rain, .dt wind {
   background-color: lightblue;
 }
 
-body .graph > temp > p, body .graph rain > p, body .graph wind > p, body .dt > temp > p, body .dt rain > p, body .dt wind > p {
-  -webkit-transform: translateY(-37px);
-          transform: translateY(-37px);
+.graph > temp > p, .graph rain > p, .graph wind > p, .dt > temp > p, .dt rain > p, .dt wind > p {
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
 }
 
-body .graph > *, body .dt > * {
+.graph > *, .dt > * {
   width: 60px;
   padding: 1px 5px;
   margin: 0.5px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.fontNormal {
+  font-weight: 400;
 }
 /*# sourceMappingURL=main.css.map */
