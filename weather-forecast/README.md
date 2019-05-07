@@ -1,5 +1,5 @@
 # Weather forecast
-**Goal:** A project that will help me learn the fundamentals of react js
+**Goal:** A project that will help me learn the fundamentals of React js
 
 The app looks like this:
 
