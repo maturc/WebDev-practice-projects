@@ -1,3 +1,3 @@
-ToDo list app
+# ToDo list app
 
-**Goal: ** Practicing react
+**Goal:** Practicing react
