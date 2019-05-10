@@ -1,9 +1,12 @@
 import React from 'react';
+import ToDoItem from './ToDoItem';
 
 function App() {
   return (
     <div className="App">
-      Hello world
+      <ToDoItem />
+      <ToDoItem />
+      <ToDoItem />
     </div>
   );
 }
