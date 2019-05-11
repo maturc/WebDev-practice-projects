@@ -4,7 +4,7 @@ function ToDoItem() {
   return (
     <div className="todo-item">
       <input type="checkbox" checked="false"/>
-      <p>Test</p>
+      <p>This is a checklist item</p>
     </div>
   );
 }
