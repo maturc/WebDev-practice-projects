@@ -1,11 +1,14 @@
 body {
   margin: 0;
+  margin-top: 20px;
+  background-color: whitesmoke;
 }
 
 .App {
   margin: 0 auto;
   width: 400px;
-  background-color: #f2f2f2;
+  background-color: white;
+  border: solid black 1px;
 }
 
 .todo-item {
