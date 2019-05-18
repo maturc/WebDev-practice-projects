@@ -7,3 +7,4 @@ Links to project pages:
 - [Number guesser](https://maturc.github.io/WebDev-practice-projects/number-guesser-doubles/index.html)
 - [IdeaBox](https://maturc.github.io/WebDev-practice-projects/ideabox/index.html)
 - [Weather forecast](https://github.com/maturc/WebDev-practice-projects/tree/master/weather-forecast)
+- [ToDo list](https://github.com/maturc/WebDev-practice-projects/tree/master/to-do)
