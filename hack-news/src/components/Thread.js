@@ -1,9 +1,6 @@
 import React from 'react';
 
 function Thread (props) {
-  //error coz didn't load
-  const test = props.data.kids;
-  console.log(test.length);
   return (
     <div>
       Author: {props.data.by}
@@ -11,7 +8,7 @@ function Thread (props) {
       Time: {props.data.time}
       Title: {props.data.title}
       Url: {props.data.url}
-      Comments: {test}
+  {/*Comments: {props.data.kids.length}*/}
     </div>
   );
 }
