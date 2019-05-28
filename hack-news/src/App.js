@@ -7,48 +7,44 @@ class App extends React.Component {
     this.state = {
       isLoading: true,
       postList: [],
-      data: {}
+      data: []
     };
   }
-  componentDidMount() {
-    this.fetchPostList("topstories");
-    this.state.postList.forEach(element => {
+  async componentDidMount() {
+    await this.fetchPostList("topstories");
+    await this.state.postList.forEach(element => {
       this.fetchItem(element);
+      console.log(this.state.data);
     });
     
     //126809
-    this.setState({ isLoading:false });
+    //this.setState({ isLoading:false });
     console.log("done");
   }
-  
-  fetchPostList(query) {
-    fetch(`https://hacker-news.firebaseio.com/v0/${query}.json`)
-      .then( response => response.json())
-      .then( data => this.setState({ postList: data.splice(0,10)}))
-      //.then( data => this.setState({ isLoading:false, data}))
-    console.log(this.state.postList);
-  }
-  
- /* TODO look into why setstate for the version with promise doesn't update before console log runs, but async does
   async fetchPostList(query) {
-    const response = await fetch(`https://hacker-news.firebaseio.com/v0/${query}.json`)
-    const data = await response.json()
-    this.setState({ postList: data.splice(0,10)});
-    //.then( data => this.setState({ isLoading:false, data}))
-    console.log(this.state.postList);
+    try {
+      const response = await fetch(`https://hacker-news.firebaseio.com/v0/${query}.json`);
+      const data = await response.json();
+      this.setState({ postList: data.splice(0,10)});
+      //.then( data => this.setState({ isLoading:false, data}))
+    } catch (error) {
+      throw Error(error);
+    }
   }
-  */
-  fetchItem(query) {
-    fetch(`https://hacker-news.firebaseio.com/v0/item/${query}.json`)
-      .then( response => response.json())
-      .then( data => this.setState( previousState => ({ ...previousState, data })))
-      .catch(err => console.log(err));
-  }
-  mapItems() {
-
+  async fetchItem(query) {
+    try {
+      const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${query}.json`);
+      const data = await response.json();
+      this.setState( previousState => {
+        console.log(previousState)
+        const list = [...previousState.data, data];
+        return { data: list };
+      });
+    } catch (error) {
+      throw Error(error);
+    }
   }
   render() {
-    console.log(this.state.postList);
     return (
       <div className="App">
         {this.state.isLoading ?
