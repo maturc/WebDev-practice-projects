@@ -8,7 +8,7 @@ function Thread (props) {
       Time: {props.data.time}
       Title: {props.data.title}
       Url: {props.data.url}
-  {/*Comments: {props.data.kids.length}*/}
+      Comments: {props.data.kids.length}
     </div>
   );
 }

@@ -16,9 +16,8 @@ class App extends React.Component {
       this.fetchItem(element);
       console.log(this.state.data);
     });
-    
     //126809
-    //this.setState({ isLoading:false });
+    this.setState({ isLoading:false });
     console.log("done");
   }
   async fetchPostList(query) {
@@ -26,7 +25,6 @@ class App extends React.Component {
       const response = await fetch(`https://hacker-news.firebaseio.com/v0/${query}.json`);
       const data = await response.json();
       this.setState({ postList: data.splice(0,10)});
-      //.then( data => this.setState({ isLoading:false, data}))
     } catch (error) {
       throw Error(error);
     }
@@ -45,14 +43,10 @@ class App extends React.Component {
     }
   }
   render() {
+    const threads = this.state.data.map( item => <Thread key={item.id} data={item} />);
     return (
       <div className="App">
-        {this.state.isLoading ?
-          <p>Loading...</p> :
-          <Thread
-            data={this.state.data}
-          />
-        }
+        { this.state.isLoading ? <p>Loading...</p> : threads }
       </div>
     );
   }
