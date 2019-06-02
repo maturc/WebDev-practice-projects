@@ -1,5 +1,6 @@
 import React from 'react';
 import Thread from './components/Thread';
+import Post from './components/Post';
 
 class App extends React.Component {
   constructor() {
@@ -42,8 +43,22 @@ class App extends React.Component {
       throw Error(error);
     }
   }
+  changeComponent(name, data){
+    this.setState({
+      [name]: data
+    });
+  }
   render() {
     const threads = this.state.data.map( item => <Thread key={item.id} data={item} />);
+    /*
+    switch (key) {
+      case value:
+        
+        break;
+    
+      default:
+        break;
+    }*/
     return (
       <div className="App">
         { this.state.isLoading ? <p>Loading...</p> : threads }
