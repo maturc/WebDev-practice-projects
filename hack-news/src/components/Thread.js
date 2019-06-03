@@ -3,7 +3,9 @@ import Comment from './Comment';
 
 function Thread (props) {
   const comments = props.data.kids.map( async item => {
-    const data = await props.fetchItem(item);
+    console.log(item);
+    const data = await props.fetchComment(item);
+    console.log(data);
     return <Comment key={data.id} data={data} />;
   });
   return (

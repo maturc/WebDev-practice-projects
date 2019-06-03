@@ -13,6 +13,7 @@ class App extends React.Component {
       thread: {}
     };
     this.changeComponent = this.changeComponent.bind(this);
+    this.fetchComment = this.fetchComment.bind(this);
   }
   async componentDidMount() {
     await this.fetchPostList("topstories");
@@ -44,6 +45,15 @@ class App extends React.Component {
       throw Error(error);
     }
   }
+  async fetchComment(query) {
+    try {
+      const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${query}.json`);
+      const data = await response.json();
+      return data
+    } catch (error) {
+      throw Error(error);
+    }
+  }
   changeComponent(e, name, data){
     e.preventDefault();
     this.setState({
@@ -54,7 +64,7 @@ class App extends React.Component {
   renderComponent() {
     switch (this.state.component) {
       case "Thread":
-        return <Thread key={this.state.thread.id} data={this.state.thread} fetchItem={this.fetchItem}/>;
+        return <Thread key={this.state.thread.id} data={this.state.thread} fetchComment={this.fetchComment}/>;
       default:
         return this.state.data.map( item => <Main key={item.id} data={item} changeComponent={this.changeComponent} />);
     }
