@@ -1,6 +1,6 @@
 import React from 'react';
+import Main from './components/Main';
 import Thread from './components/Thread';
-import Post from './components/Post';
 
 class App extends React.Component {
   constructor() {
@@ -8,16 +8,17 @@ class App extends React.Component {
     this.state = {
       isLoading: true,
       postList: [],
-      data: []
+      data: [],
+      component: "New",
+      thread: {}
     };
+    this.changeComponent = this.changeComponent.bind(this);
   }
   async componentDidMount() {
     await this.fetchPostList("topstories");
     await this.state.postList.forEach(element => {
       this.fetchItem(element);
-      console.log(this.state.data);
     });
-    //126809
     this.setState({ isLoading:false });
     console.log("done");
   }
@@ -43,25 +44,26 @@ class App extends React.Component {
       throw Error(error);
     }
   }
-  changeComponent(name, data){
+  changeComponent(e, name, data){
+    e.preventDefault();
     this.setState({
-      [name]: data
+      component: name,
+      thread: data
     });
   }
-  render() {
-    const threads = this.state.data.map( item => <Thread key={item.id} data={item} />);
-    /*
-    switch (key) {
-      case value:
-        
-        break;
-    
+  renderComponent() {
+    switch (this.state.component) {
+      case "Thread":
+        return <Thread key={this.state.thread.id} data={this.state.thread} fetchItem={this.fetchItem}/>;
       default:
-        break;
-    }*/
+        return this.state.data.map( item => <Main key={item.id} data={item} changeComponent={this.changeComponent} />);
+    }
+  }
+  render() {
+    
     return (
       <div className="App">
-        { this.state.isLoading ? <p>Loading...</p> : threads }
+        { this.state.isLoading ? <p>Loading...</p> : this.renderComponent() }
       </div>
     );
   }
