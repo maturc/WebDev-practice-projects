@@ -20,8 +20,7 @@ class App extends React.Component {
     await this.state.postList.forEach(element => {
       this.fetchItem(element);
     });
-    this.setState({ isLoading:false });
-    console.log("done");
+    this.setState({ isLoading: false });
   }
   async fetchPostList(query) {
     try {
@@ -37,7 +36,6 @@ class App extends React.Component {
       const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${query}.json`);
       const data = await response.json();
       this.setState( previousState => {
-        console.log(previousState)
         const list = [...previousState.data, data];
         return { data: list };
       });
@@ -58,13 +56,17 @@ class App extends React.Component {
     e.preventDefault();
     this.setState({
       component: name,
-      thread: data
+      thread: data,
     });
   }
   renderComponent() {
     switch (this.state.component) {
       case "Thread":
-        return <Thread key={this.state.thread.id} data={this.state.thread} fetchComment={this.fetchComment}/>;
+        return <Thread
+          key={this.state.thread.id}
+          data={this.state.thread}
+          fetchComment={this.fetchComment}
+        />;
       default:
         return this.state.data.map( item => <Main key={item.id} data={item} changeComponent={this.changeComponent} />);
     }
