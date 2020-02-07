@@ -2,9 +2,22 @@
 Collection of projects that I created to help me learn web development.
 Each folder is a seperate webpage.
 
-Links to project pages:
+Links to project pages with lists of used technologies and concepts:
 - [Dog party](https://maturc.github.io/WebDev-practice-projects/dog-party/index.html)
+  + html, css, js
+  + recreating a design
+  + focus on the design and positioning
 - [Number guesser](https://maturc.github.io/WebDev-practice-projects/number-guesser-doubles/index.html)
+  + html, css, js
+  + recreating a design
+  + focus on dom manipulation with js
 - [IdeaBox](https://maturc.github.io/WebDev-practice-projects/ideabox/index.html)
+  + html, css, js with dynamic elements
+  + recreating a design
+  + responsive css
+  + local storage
 - [Weather forecast](https://github.com/maturc/WebDev-practice-projects/tree/master/weather-forecast)
+  + html, css, js, react, d3 library, node, sass
+  + use of an api
 - [ToDo list](https://github.com/maturc/WebDev-practice-projects/tree/master/to-do)
+  + html, css, js, react, sass
