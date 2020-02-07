@@ -1,4 +1,52 @@
 body {
-  margin: 0;
+  margin: 0 auto;
+  width: 69%;
+  background-color: lightgrey;
+}
+
+.app {
+  background-color: white;
+  padding: 20px;
+  height: 100vh;
+  height: 100vh;
+  border: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom: 5px solid orange;
+}
+
+.post {
+  padding: 10px;
+}
+
+.title {
+  display: block;
+}
+
+.lighter-text {
+  color: #575757;
+}
+
+.description {
+  font-size: small;
+  display: block;
+}
+
+.comment {
+  display: block;
+  padding-bottom: 2px;
+}
+
+.logo {
+  color: orange;
+  text-shadow: 1px 1px #996300;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: sans-serif;
+  display: inline-block;
+  border-bottom: 4px solid orange;
+  padding: 0 10px;
+  -webkit-box-shadow: 0 1px #996300;
+          box-shadow: 0 1px #996300;
 }
 /*# sourceMappingURL=index.css.map */

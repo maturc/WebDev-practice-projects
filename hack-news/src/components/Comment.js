@@ -2,11 +2,14 @@ import React from 'react';
 
 function Comment (props) {
   return (
-    <div>
-      {console.log(props)}
-      Author: {props.data.by}
-      Time: {props.data.time}
-      Comment: {props.data.text}
+    <div className="post">
+      <span className="comment">
+        {props.data.text}
+      </span>
+      <span className="description lighter-text">
+        By {props.data.by}
+        at {new Date(props.data.time * 1e3).toISOString().slice(-13, -5)}
+      </span>
     </div>
   );
 }

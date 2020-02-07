@@ -8,73 +8,72 @@ class App extends React.Component {
     this.state = {
       isLoading: true,
       postList: [],
-      data: [],
+      postData: [],
       component: "New",
       thread: {}
     };
     this.changeComponent = this.changeComponent.bind(this);
-    this.fetchComment = this.fetchComment.bind(this);
   }
   async componentDidMount() {
     await this.fetchPostList("topstories");
-    await this.state.postList.forEach(element => {
+    this.state.postList.forEach(element => {
       this.fetchItem(element);
     });
     this.setState({ isLoading: false });
   }
   async fetchPostList(query) {
-    try {
       const response = await fetch(`https://hacker-news.firebaseio.com/v0/${query}.json`);
       const data = await response.json();
-      this.setState({ postList: data.splice(0,10)});
-    } catch (error) {
-      throw Error(error);
-    }
+      this.setState({ postList: data.splice(0,16)});
   }
   async fetchItem(query) {
-    try {
       const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${query}.json`);
       const data = await response.json();
       this.setState( previousState => {
-        const list = [...previousState.data, data];
-        return { data: list };
+        const list = [...previousState.postData, data];
+        return { postData: list };
       });
-    } catch (error) {
-      throw Error(error);
-    }
   }
-  async fetchComment(query) {
-    try {
-      const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${query}.json`);
-      const data = await response.json();
-      return data
-    } catch (error) {
-      throw Error(error);
-    }
-  }
-  changeComponent(e, name, data){
+  changeComponent(e, name, data) {
     e.preventDefault();
     this.setState({
       component: name,
-      thread: data,
+      thread: data
     });
   }
   renderComponent() {
     switch (this.state.component) {
       case "Thread":
-        return <Thread
-          key={this.state.thread.id}
-          data={this.state.thread}
-          fetchComment={this.fetchComment}
-        />;
+        return (
+          <div>
+            <Thread
+              key={this.state.thread.id}
+              data={this.state.thread}
+              isLoadingComments={this.state.isLoadingComments}
+              fetchComment={this.fetchComment}
+              loadComments={this.loadComments}
+            />
+          </div>
+        );
       default:
-        return this.state.data.map( item => <Main key={item.id} data={item} changeComponent={this.changeComponent} />);
+        return (
+          this.state.postData.map( item =>
+            <Main 
+              key={item.id}
+              data={item}
+              changeComponent={this.changeComponent}
+            />
+          )
+        );
     }
   }
   render() {
     
     return (
-      <div className="App">
+      <div className="app">
+        <div className="logo">
+          HACKER NEWS CLONE
+        </div>
         { this.state.isLoading ? <p>Loading...</p> : this.renderComponent() }
       </div>
     );
