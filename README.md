@@ -4,13 +4,17 @@ Each folder is a seperate webpage.
 
 Links to project pages with lists of used technologies and concepts:
 - [Dog party](https://maturc.github.io/WebDev-practice-projects/dog-party/index.html)
-  *html, css, js
+
+  -html, css, js
+  
   *recreating a design
   *focus on the design and positioning
 - [Number guesser](https://maturc.github.io/WebDev-practice-projects/number-guesser-doubles/index.html)
-  *html, css, js
-  *recreating a design
-  *focus on dom manipulation with js
+
+  -html, css, js
+  
+  -recreating a design
+  -focus on dom manipulation with js
 - [IdeaBox](https://maturc.github.io/WebDev-practice-projects/ideabox/index.html)
   *html, css, js with dynamic elements
   *recreating a design
