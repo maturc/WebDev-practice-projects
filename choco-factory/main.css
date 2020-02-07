@@ -1,0 +1,162 @@
+/*
+ * RESET AND SETUP
+ * ===================================================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+   margin: 0;
+   padding: 0;
+}
+html {
+   box-sizing: border-box;
+}
+*, *:before, *:after {
+   box-sizing: inherit;
+}
+.clearfix::after {
+   content: "";
+   clear: both;
+   display: table;
+}
+/*
+ * FONT
+ * ===================================================== */
+body {
+   font-family: 'Oswald', sans-serif;
+}
+/*
+ * NAVIGATION BAR
+ * ===================================================== */
+.nav {
+   width: 100%;
+   padding: 4px 10px;
+   background-color: #4e4a42;
+   color: white;
+   display: flex;
+   justify-content: space-between;
+   align-content: center;
+   align-items: center;
+}
+.nav-container {
+   width: 200px;
+   text-align: center;
+}
+.nav-logo {
+   width: 85px;
+   text-align: left;
+}
+.nav-logo a {
+
+   text-decoration: none;
+   color: #FFFA97;
+}
+.nav-logo a h1 {
+   padding: 0 10px;
+   font-size: 22px;
+   line-height: 22px;
+   text-shadow: 1px 1px rgb(110, 107, 67);
+}
+.nav-main li {
+   display: inline;
+}
+.nav-main li a {
+   color: white;
+   text-decoration: none;
+}
+.nav-main li a:hover {
+   color: #FFFA97;
+}
+.nav-social li {
+   display: inline;
+}
+
+.social {
+   padding: 8px;
+   width: 50px;
+   margin: 0 5px;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: contain;
+}
+.social-fb  {background-image: url("./assets/facebook.svg");}
+.social-ig  {background-image: url("./assets/instagram.svg");}
+.social-yt  {background-image: url("./assets/youtube.svg");}
+.social-pin {background-image: url("./assets/pinterest.svg");}
+/*
+ * BANNER
+ * ===================================================== */
+.banner {
+   background-image: url("./assets/chocolates-close-up-cocoa-65882.jpg");
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   width: 100%;
+   height: 912px;
+   display: flex;
+   align-content: center;
+   align-items: center;
+
+}
+.banner-logo {
+   background-color: rgba(78, 74, 66, .98);
+   color: #FFFA97;
+   font-size: 82px;
+   text-shadow: 2px 2px rgb(110, 107, 67);
+   text-align: center;
+   margin: 380px auto;
+   width: 450px;
+   padding: 30px;
+   border-radius: 2px;
+   border: 10px double #FFFA97;
+   line-height: 82px;
+}
+.noselect {
+   -webkit-touch-callout: none;
+     -webkit-user-select: none;
+      -khtml-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+ }
+/*
+ * MAIN
+ * ===================================================== */
+.main {
+   width: 960px;
+   margin: 0 auto;
+}
+.col {
+   display: flex;
+   justify-content: space-between;
+   align-content: center;
+   align-items: center;
+}
+.col-in {
+   padding: 20px;
+}
+.section-img {
+   height: 400px;
+   width: 400px;
+   object-fit: cover;
+   border: 1px solid rgba(0, 0, 0, .1);
+}
+.sale  {text-align: left;}
+.about {text-align: right;}
+
+.contact {
+   padding: 20px;
+   margin: auto;
+   text-align: center;
+}
+/*
+ * FOOTER
+ * ===================================================== */
+ .footer {
+   display: flex;
+   justify-content: center;
+ }
