@@ -153,6 +153,9 @@ body {
    margin: auto;
    text-align: center;
 }
+.grey-text {
+   color: #363636;
+}
 /*
  * FOOTER
  * ===================================================== */
