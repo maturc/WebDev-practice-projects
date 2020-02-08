@@ -20,6 +20,7 @@ Links to project pages with lists of used technologies and concepts:
   + focus on dom manipulation with js
 - [Choco Factory](https://maturc.github.io/WebDev-practice-projects/choco-factory/)
   + html, css
+  + flexbox practice
   + practicing designing a website
 - [Dog party](https://maturc.github.io/WebDev-practice-projects/dog-party/index.html)
   + html, css, js
