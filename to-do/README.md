@@ -1,5 +1,7 @@
 # ToDo list app
 
+A simple ToDo list application.
+
 **Goal:** A project that will help me practice the fundementals of react
 
 The app looks like this:
