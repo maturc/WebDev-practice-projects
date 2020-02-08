@@ -1,4 +1,7 @@
 # Weather forecast
+
+Application that displays the weather forecast for the selected location.
+
 **Goal:** A project that will help me learn the fundamentals of React js
 
 The app looks like this:
