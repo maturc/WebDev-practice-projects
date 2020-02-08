@@ -43,4 +43,7 @@ body {
 .fontNormal {
   font-weight: 400;
 }
+.grey, .time {
+  color: #363636;
+}
 /*# sourceMappingURL=main.css.map */

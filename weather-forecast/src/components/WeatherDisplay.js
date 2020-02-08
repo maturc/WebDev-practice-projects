@@ -16,13 +16,13 @@ function WeatherDisplay(props) {
       <div>
         <div>
           <h1>{cityName}, {countryName}</h1>
-          <span>{weatherForecast.list[0].dt_txt}</span>
+          <span className="grey">{weatherForecast.list[0].dt_txt}</span>
         </div>
         <div className="fontNormal">
           <span className="capitalize">{weatherForecast.list[0].weather[0].description}</span>&nbsp;
           {Math.round(weatherForecast.list[0].main.temp-272.15)}°C;
         </div>
-        <div>
+        <div className="grey">
           <span>Precipitation: {rain}&#37;</span>&nbsp;&nbsp;
           <span>Humidity: {weatherForecast.list[0].main.humidity}%</span>&nbsp;&nbsp;
           <span>Wind: {weatherForecast.list[0].wind.speed} m/s</span>
