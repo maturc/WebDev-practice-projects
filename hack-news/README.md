@@ -1,4 +1,7 @@
-# Weather forecast
+# Hacker News Clone
+
+Application that fetches and displays stories from the hacker news api.
+
 **Goal:** Practicing react and the usage of an api
 
 The app looks like this:
