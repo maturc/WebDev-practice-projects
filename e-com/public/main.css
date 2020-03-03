@@ -1,0 +1,251 @@
+/* ==========================================================================
+  Body
+ @mixin ========================================================================= */
+.app-wrapper {
+  margin: 0 auto;
+  width: 1100px;
+}
+
+/* ==========================================================================
+  Navbar
+ @mixin ========================================================================= */
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: lightgrey;
+}
+
+.header__navbar {
+  width: 40%;
+}
+
+.header__navbar > ul {
+  width: 100%;
+  list-style: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header__navbar-link {
+  text-decoration: none;
+  color: black;
+  padding: 16px;
+}
+
+.header__navbar-link:hover {
+  background-color: #b5b5b5;
+}
+
+.header__searchbar-input {
+  vertical-align: top;
+  width: 340px;
+  margin-right: 2px;
+}
+
+.header__searchbar-icon {
+  height: 20px;
+  width: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.header__searchbar-icon:hover {
+  background-color: #b5b5b5;
+}
+
+.header__basket {
+  padding: 8px;
+}
+
+.header__basket:hover {
+  background-color: #b5b5b5;
+}
+
+.header__basket-icon {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+/* ==========================================================================
+  Main
+ @mixin ========================================================================= */
+.main-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* ==========================================================================
+  Main-wrapper
+ @mixin ========================================================================= */
+.main-wrapper {
+  padding: 20px 0;
+}
+
+/* ==========================================================================
+  Aside
+ @mixin ========================================================================= */
+.aside {
+  padding: 20px;
+}
+
+.aside-title {
+  margin: 0 0 10px 0;
+  color: #929292;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.aside-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.aside-link {
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding-bottom: 10px;
+}
+
+.aside-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+  Product cards
+ @mixin ========================================================================= */
+.card-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.card {
+  width: 250px;
+  height: 350px;
+  background-color: white;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px;
+  -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card__image-wrapper {
+  height: 310px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card__image {
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.card__description-wrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 210px 40px;
+      grid-template-columns: 210px 40px;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+      grid-template-areas: "description basket";
+}
+
+.card__description {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: description;
+}
+
+.card__description-name {
+  overflow: hidden;
+}
+
+.card__description-price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.card__basket-icon {
+  height: 40px;
+  width: 40px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: basket;
+}
+
+.card__basket-icon:hover {
+  background-color: #b5b5b5;
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,140 @@
+/* ==========================================================================
+  Body
+ ========================================================================== */
+$hover-color: #b5b5b5
+.app-wrapper
+  margin: 0 auto
+  width: 1100px
+
+/* ==========================================================================
+  Navbar
+ ========================================================================== */
+.header
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  align-items: center
+  background-color: lightgrey
+  &__navbar
+    width: 40%
+    & > ul
+      width: 100%
+      list-style: none
+      display: inline-flex
+      flex-direction: row
+      justify-content: space-between
+  &__navbar-link
+    text-decoration: none
+    color: black
+    padding: 16px
+    &:hover
+      background-color: $hover-color
+  &__searchbar
+  &__searchbar-input
+    vertical-align: top
+    width: 340px
+    margin-right: 2px
+  &__searchbar-icon
+    height: 20px
+    width: 20px
+    object-fit: contain
+    &:hover
+      background-color: $hover-color
+  &__basket
+    padding: 8px
+    &:hover
+      background-color: $hover-color
+  &__basket-icon
+    height: 30px
+    width: 30px
+    object-fit: contain
+/* ==========================================================================
+  Main
+ ========================================================================== */
+.main-wrapper
+  display: flex
+  flex-direction: row
+
+
+
+
+/* ==========================================================================
+  Main-wrapper
+ ========================================================================== */
+.main-wrapper
+  padding: 20px 0
+/* ==========================================================================
+  Aside
+ ========================================================================== */
+.aside
+  padding: 20px
+  &-title
+    margin: 0 0 10px 0
+    color: #929292
+    font-weight: 600
+    font-size: 15px
+  &-list
+    list-style: none
+    padding-left: 0
+    margin: 0
+  &-link
+    text-decoration: none
+    color: black
+    display: block
+    padding-bottom: 10px
+    &:hover
+      text-decoration: underline
+/* ==========================================================================
+  Product cards
+ ========================================================================== */
+$card-width: 250px
+$card-height: 350px  
+$description-height: 40px
+.card-section
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+.card
+  width: $card-width
+  height: $card-height
+  background-color: white
+  padding: 10px
+  //border: 1px solid black
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin: 10px
+  box-shadow: 0 2px 6px 0 hsla(0, 0, 0, 0.2)
+  &__image-wrapper
+    height: $card-height - $description-height
+    display: flex
+    flex-direction: column
+    justify-content: center
+  &__image
+    max-width: 100%
+    max-height: 100%
+    object-fit: contain
+  &__description-wrapper
+    display: grid
+    grid-template-columns: 210px 40px;
+    grid-template-rows: auto;
+    grid-template-areas: "description basket" 
+  &__description
+    height: $description-height
+    display: flex
+    flex-direction: column
+    text-align: center
+    grid-area: description
+  &__description-name
+    overflow: hidden
+  &__description-price
+    display: flex
+    flex-direction: row
+    justify-content: space-evenly
+  &__basket-icon
+    height: 40px
+    width: 40px
+    object-fit: contain
+    grid-area: basket
+    &:hover
+      background-color: $hover-color
