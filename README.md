@@ -11,6 +11,8 @@ Links to project pages with lists of used technologies and concepts:
   + recreating a design
   + responsive css
   + local storage
+- [E-com](https://github.com/maturc/WebDev-practice-projects/tree/master/e-com)
+  + html, css, js, react, sass, node, webpack, typescript, rest api, mongodb
 - [Weather forecast](https://github.com/maturc/WebDev-practice-projects/tree/master/weather-forecast)
   + html, css, js, react, d3 library, node, sass
   + use of an api
