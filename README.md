@@ -2,7 +2,7 @@
 Collection of projects that I created to help me learn web development.
 Each folder is a seperate webpage.
 
-Links to project pages with lists of used technologies and concepts:
+Links to project pages with lists of used technologies and concepts (open a project folder for more details):
 - [Hacker News](https://github.com/maturc/WebDev-practice-projects/tree/master/hack-news)
   + html, css, js, react, sass, node
   + use of an api
